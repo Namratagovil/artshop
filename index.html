@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Namrata Agarwal — Illustrations</title>
+  <meta name="description" content="Illustration portfolio of Namrata Agarwal — Indo-Swedish sensibilities, capturing memories of people, scents, beauty, trees, and pathways.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ─── Reset ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    /* ─── Tokens ─── */
+    :root {
+      --black:       #111111;
+      --dark:        #333333;
+      --mid:         #666666;
+      --light:       #d6d6d6;
+      --off-white:   #f5f5f5;
+      --white:       #ffffff;
+      --focus-ring:  3px solid #111111;
+    }
+
+    /* ─── Base ─── */
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--black);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── Accessibility ─── */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 1rem;
+      background: var(--black);
+      color: var(--white);
+      padding: .5rem 1rem;
+      font-size: .875rem;
+      font-weight: 500;
+      text-decoration: none;
+      z-index: 9999;
+      transition: top .15s;
+    }
+    .skip-link:focus { top: 1rem; }
+
+    :focus-visible { outline: var(--focus-ring); outline-offset: 3px; }
+
+    /* ─── Nav ─── */
+    .site-header {
+      position: sticky;
+      top: 0;
+      background: var(--white);
+      border-bottom: 1px solid var(--light);
+      z-index: 200;
+    }
+
+    .nav-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-size: .9375rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--black);
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2.25rem;
+    }
+
+    .nav-links a {
+      font-size: .75rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--mid);
+      transition: color .2s;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus-visible { color: var(--black); }
+
+    /* hamburger */
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      padding: .5rem;
+      cursor: pointer;
+      color: var(--black);
+      line-height: 0;
+      min-width: 44px;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-mobile {
+      display: none;
+      flex-direction: column;
+      border-top: 1px solid var(--light);
+    }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a {
+      font-size: .8125rem;
+      font-weight: 500;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--dark);
+      padding: .875rem 2rem;
+      border-bottom: 1px solid var(--light);
+      transition: background .15s;
+    }
+    .nav-mobile a:hover { background: var(--off-white); }
+
+    /* ─── Hero ─── */
+    .hero {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 5.5rem 2rem 4rem;
+      text-align: center;
+    }
+
+    .hero-name {
+      font-size: clamp(2.75rem, 6vw, 5.5rem);
+      font-weight: 300;
+      letter-spacing: .02em;
+      line-height: 1.08;
+      color: var(--black);
+    }
+
+    .hero-role {
+      margin-top: .75rem;
+      font-size: .8125rem;
+      font-weight: 500;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    .hero-intro {
+      margin-top: 1.5rem;
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--mid);
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.85;
+    }
+
+    .hero-contact {
+      margin-top: 1.75rem;
+      font-size: .875rem;
+      font-weight: 400;
+      color: var(--dark);
+      line-height: 1.9;
+    }
+    .hero-contact a {
+      color: var(--black);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      font-weight: 500;
+    }
+    .hero-contact a:hover { color: var(--mid); }
+
+    .rule {
+      width: 36px;
+      height: 1px;
+      background: var(--light);
+      margin: 3.5rem auto;
+    }
+
+    /* ─── Gallery ─── */
+    .gallery-section {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem 6rem;
+    }
+
+    .section-eyebrow {
+      font-size: .6875rem;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 1.75rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: .875rem;
+    }
+
+    /* gallery card */
+    .gallery-card {
+      position: relative;
+      overflow: hidden;
+      background: var(--off-white);
+    }
+
+    .gallery-card:focus-within {
+      outline: var(--focus-ring);
+      outline-offset: 2px;
+    }
+
+    .gallery-card a {
+      display: block;
+      text-decoration: none;
+    }
+    .gallery-card a:focus { outline: none; }
+
+    .gallery-card img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      display: block;
+      transition: transform .45s ease, opacity .35s ease;
+    }
+    .gallery-card.portrait img { aspect-ratio: 3 / 4; }
+
+    .gallery-card:hover img,
+    .gallery-card:focus-within img {
+      transform: scale(1.04);
+      opacity: .88;
+    }
+
+    .gallery-card-caption {
+      position: absolute;
+      inset-inline: 0;
+      bottom: 0;
+      padding: .625rem .875rem;
+      background: rgba(0,0,0,.72);
+      color: var(--white);
+      font-size: .75rem;
+      font-weight: 400;
+      letter-spacing: .04em;
+      transform: translateY(100%);
+      transition: transform .28s ease;
+    }
+    .gallery-card:hover .gallery-card-caption,
+    .gallery-card:focus-within .gallery-card-caption {
+      transform: translateY(0);
+    }
+
+    /* ─── About ─── */
+    .about-section {
+      background: var(--off-white);
+      padding: 5.5rem 2rem;
+    }
+
+    .about-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .about-heading {
+      font-size: clamp(1.75rem, 3vw, 2.625rem);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--black);
+      margin-bottom: 1.5rem;
+    }
+
+    .about-body {
+      font-size: .9375rem;
+      font-weight: 300;
+      color: var(--mid);
+      line-height: 1.9;
+    }
+    .about-body p + p { margin-top: 1rem; }
+
+    .about-img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      display: block;
+      background: var(--light);
+    }
+
+    /* ─── Contact ─── */
+    .contact-section {
+      padding: 5.5rem 2rem 6rem;
+      max-width: 580px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .contact-heading {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 300;
+      color: var(--black);
+    }
+
+    .contact-sub {
+      margin-top: .75rem;
+      font-size: .9375rem;
+      font-weight: 300;
+      color: var(--mid);
+      line-height: 1.8;
+    }
+    .contact-sub a {
+      color: var(--dark);
+      font-weight: 400;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .contact-sub a:hover { color: var(--black); }
+
+    .contact-form {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.125rem;
+      text-align: left;
+    }
+
+    .field-label {
+      display: block;
+      font-size: .6875rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--dark);
+      margin-bottom: .375rem;
+    }
+
+    .field-input,
+    .field-textarea {
+      font-family: 'Inter', sans-serif;
+      font-size: .9375rem;
+      font-weight: 300;
+      color: var(--black);
+      background: var(--white);
+      border: 1px solid var(--light);
+      padding: .75rem 1rem;
+      width: 100%;
+      transition: border-color .2s;
+    }
+    .field-input:focus,
+    .field-textarea:focus {
+      outline: var(--focus-ring);
+      outline-offset: 0;
+      border-color: var(--black);
+    }
+    .field-input[aria-invalid="true"],
+    .field-textarea[aria-invalid="true"] {
+      border-color: #b00020;
+    }
+
+    .field-textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    .field-error {
+      font-size: .75rem;
+      color: #b00020;
+      margin-top: .25rem;
+      display: none;
+    }
+    .field-error.visible { display: block; }
+
+    .btn-submit {
+      font-family: 'Inter', sans-serif;
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--black);
+      border: 2px solid var(--black);
+      padding: .875rem 2.25rem;
+      cursor: pointer;
+      align-self: flex-start;
+      transition: background .2s, border-color .2s;
+      min-height: 44px;
+    }
+    .btn-submit:hover {
+      background: var(--dark);
+      border-color: var(--dark);
+    }
+    .btn-submit:focus-visible {
+      outline: 3px solid var(--mid);
+      outline-offset: 3px;
+    }
+
+    .form-success {
+      display: none;
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background: var(--off-white);
+      border-left: 3px solid var(--black);
+      font-size: .9375rem;
+      font-weight: 300;
+      color: var(--dark);
+      text-align: left;
+    }
+    .form-success.visible { display: block; }
+
+    /* ─── Footer ─── */
+    .site-footer {
+      border-top: 1px solid var(--light);
+      padding: 1.75rem 2rem;
+    }
+
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-copy {
+      font-size: .8125rem;
+      font-weight: 300;
+      color: var(--mid);
+      line-height: 1.7;
+    }
+    .footer-copy p + p {
+      margin-top: .2rem;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-links a {
+      font-size: .8125rem;
+      font-weight: 300;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--black); }
+
+    .footer-copy a {
+      color: var(--mid);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      transition: color .2s;
+    }
+    .footer-copy a:hover { color: var(--black); }
+
+    /* ─── Lightbox ─── */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.92);
+      z-index: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .25s;
+    }
+    .lightbox.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .lb-img {
+      max-width: 100%;
+      max-height: 82vh;
+      object-fit: contain;
+      display: block;
+    }
+
+    .lb-close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: none;
+      border: 1px solid rgba(255,255,255,.35);
+      color: var(--white);
+      width: 44px;
+      height: 44px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color .2s;
+    }
+    .lb-close:hover { border-color: var(--white); }
+    .lb-close:focus-visible { outline: 3px solid var(--white); outline-offset: 3px; }
+
+    .lb-caption {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,.6);
+      font-size: .8125rem;
+      letter-spacing: .06em;
+      white-space: nowrap;
+    }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 1024px) {
+      .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .menu-btn  { display: flex; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-inner  { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-img    { order: -1; aspect-ratio: 16 / 9; }
+    }
+
+    @media (max-width: 480px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+
+      .nav-inner,
+      .gallery-section,
+      .about-section,
+      .contact-section,
+      .site-footer { padding-inline: 1.25rem; }
+
+      .hero { padding: 3.5rem 1.25rem 3rem; }
+
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ── Header / Nav ── -->
+  <header class="site-header">
+    <nav class="nav-inner" aria-label="Primary">
+      <a class="nav-logo" href="#" aria-label="Namrata Agarwal — home">Namrata Agarwal</a>
+
+      <ul class="nav-links" role="list">
+        <li><a href="#illustrations">Illustrations</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false">
+          <line x1="2" y1="6"  x2="20" y2="6"/>
+          <line x1="2" y1="11" x2="20" y2="11"/>
+          <line x1="2" y1="16" x2="20" y2="16"/>
+        </svg>
+      </button>
+    </nav>
+
+    <nav id="mobileNav" class="nav-mobile" aria-label="Mobile">
+      <a href="#illustrations">Illustrations</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- ── Hero ── -->
+    <section class="hero">
+      <p class="hero-intro">This collection, inspired by Indo-Swedish style, features images that capture my memories of people, scents, beauty, trees, and pathways that I'm excited to share with you.</p>
+      <p class="hero-contact">Contact to buy or commission<br><a href="mailto:namratagovil@gmail.com">namratagovil@gmail.com</a></p>
+    </section>
+
+    <div class="rule" role="presentation"></div>
+
+    <!-- ── Gallery ── -->
+    <section class="gallery-section" id="illustrations" aria-labelledby="gallery-eyebrow">
+      <p class="section-eyebrow" id="gallery-eyebrow">Selected Works</p>
+
+      <div class="gallery-grid" role="list">
+
+        <div class="gallery-card" role="listitem">
+          <a href="#" aria-label="View: Monsoon Reverie" data-src="https://picsum.photos/seed/na01/700/700" data-caption="Monsoon Reverie">
+            <img src="https://picsum.photos/seed/na01/600/600" alt="Monsoon Reverie — botanical forms in warm earth tones" loading="lazy" width="600" height="600">
+            <span class="gallery-card-caption" aria-hidden="true">Monsoon Reverie</span>
+          </a>
+        </div>
+
+        <div class="gallery-card portrait" role="listitem">
+          <a href="#" aria-label="View: River Song" data-src="https://picsum.photos/seed/na02/600/800" data-caption="River Song">
+            <img src="https://picsum.photos/seed/na02/600/800" alt="River Song — figure at a river's edge surrounded by foliage" loading="lazy" width="600" height="800">
+            <span class="gallery-card-caption" aria-hidden="true">River Song</span>
+          </a>
+        </div>
+
+        <div class="gallery-card" role="listitem">
+          <a href="#" aria-label="View: Market Morning" data-src="https://picsum.photos/seed/na03/700/700" data-caption="Market Morning">
+            <img src="https://picsum.photos/seed/na03/600/600" alt="Market Morning — vibrant street scene with flower vendors" loading="lazy" width="600" height="600">
+            <span class="gallery-card-caption" aria-hidden="true">Market Morning</span>
+          </a>
+        </div>
+
+        <div class="gallery-card" role="listitem">
+          <a href="#" aria-label="View: Still Life with Marigolds" data-src="https://picsum.photos/seed/na04/700/700" data-caption="Still Life with Marigolds">
+            <img src="https://picsum.photos/seed/na04/600/600" alt="Still Life with Marigolds — floral arrangement in warm hues" loading="lazy" width="600" height="600">
+            <span class="gallery-card-caption" aria-hidden="true">Still Life with Marigolds</span>
+          </a>
+        </div>
+
+        <div class="gallery-card portrait" role="listitem">
+          <a href="#" aria-label="View: Grandmother's Garden" data-src="https://picsum.photos/seed/na05/600/800" data-caption="Grandmother's Garden">
+            <img src="https://picsum.photos/seed/na05/600/800" alt="Grandmother's Garden — lush garden with traditional architecture" loading="lazy" width="600" height="800">
+            <span class="gallery-card-caption" aria-hidden="true">Grandmother's Garden</span>
+          </a>
+        </div>
+
+        <div class="gallery-card" role="listitem">
+          <a href="#" aria-label="View: Nordic Dusk" data-src="https://picsum.photos/seed/na06/700/700" data-caption="Nordic Dusk">
+            <img src="https://picsum.photos/seed/na06/600/600" alt="Nordic Dusk — twilight landscape with silhouetted trees" loading="lazy" width="600" height="600">
+            <span class="gallery-card-caption" aria-hidden="true">Nordic Dusk</span>
+          </a>
+        </div>
+
+        <div class="gallery-card" role="listitem">
+          <a href="#" aria-label="View: The Blue Hour" data-src="https://picsum.photos/seed/na07/700/700" data-caption="The Blue Hour">
+            <img src="https://picsum.photos/seed/na07/600/600" alt="The Blue Hour — serene cityscape at dawn" loading="lazy" width="600" height="600">
+            <span class="gallery-card-caption" aria-hidden="true">The Blue Hour</span>
+          </a>
+        </div>
+
+        <div class="gallery-card" role="listitem">
+          <a href="#" aria-label="View: Chai at Four" data-src="https://picsum.photos/seed/na08/700/700" data-caption="Chai at Four">
+            <img src="https://picsum.photos/seed/na08/600/600" alt="Chai at Four — intimate domestic scene with afternoon light" loading="lazy" width="600" height="600">
+            <span class="gallery-card-caption" aria-hidden="true">Chai at Four</span>
+          </a>
+        </div>
+
+        <div class="gallery-card portrait" role="listitem">
+          <a href="#" aria-label="View: Forest Path" data-src="https://picsum.photos/seed/na09/600/800" data-caption="Forest Path">
+            <img src="https://picsum.photos/seed/na09/600/800" alt="Forest Path — dappled light through dense woodland" loading="lazy" width="600" height="800">
+            <span class="gallery-card-caption" aria-hidden="true">Forest Path</span>
+          </a>
+        </div>
+
+        <div class="gallery-card" role="listitem">
+          <a href="#" aria-label="View: Bougainvillea" data-src="https://picsum.photos/seed/na10/700/700" data-caption="Bougainvillea">
+            <img src="https://picsum.photos/seed/na10/600/600" alt="Bougainvillea — vivid blossoms cascading over whitewashed walls" loading="lazy" width="600" height="600">
+            <span class="gallery-card-caption" aria-hidden="true">Bougainvillea</span>
+          </a>
+        </div>
+
+        <div class="gallery-card" role="listitem">
+          <a href="#" aria-label="View: Evening Walk" data-src="https://picsum.photos/seed/na11/700/700" data-caption="Evening Walk">
+            <img src="https://picsum.photos/seed/na11/600/600" alt="Evening Walk — figures on a tree-lined boulevard at dusk" loading="lazy" width="600" height="600">
+            <span class="gallery-card-caption" aria-hidden="true">Evening Walk</span>
+          </a>
+        </div>
+
+        <div class="gallery-card portrait" role="listitem">
+          <a href="#" aria-label="View: Saffron & Snow" data-src="https://picsum.photos/seed/na12/600/800" data-caption="Saffron &amp; Snow">
+            <img src="https://picsum.photos/seed/na12/600/800" alt="Saffron and Snow — warm spice market contrasted with a winter landscape" loading="lazy" width="600" height="800">
+            <span class="gallery-card-caption" aria-hidden="true">Saffron &amp; Snow</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── Contact ── -->
+    <section class="contact-section" id="contact" aria-labelledby="contact-heading">
+      <h2 class="contact-heading" id="contact-heading">Get in touch</h2>
+      <p class="contact-sub">To buy a piece or commission new work, send me a message below or email directly at <a href="mailto:namratagovil@gmail.com">namratagovil@gmail.com</a></p>
+
+      <form class="contact-form" id="contactForm" novalidate aria-label="Contact form">
+
+        <div class="form-group">
+          <label class="field-label" for="f-name">Name</label>
+          <input class="field-input" type="text" id="f-name" name="name" autocomplete="name" required aria-required="true" aria-describedby="f-name-err">
+          <span class="field-error" id="f-name-err" role="alert">Please enter your name.</span>
+        </div>
+
+        <div class="form-group">
+          <label class="field-label" for="f-email">Email</label>
+          <input class="field-input" type="email" id="f-email" name="email" autocomplete="email" required aria-required="true" aria-describedby="f-email-err">
+          <span class="field-error" id="f-email-err" role="alert">Please enter a valid email address.</span>
+        </div>
+
+        <div class="form-group">
+          <label class="field-label" for="f-message">Message</label>
+          <textarea class="field-textarea" id="f-message" name="message" required aria-required="true" aria-describedby="f-message-err"></textarea>
+          <span class="field-error" id="f-message-err" role="alert">Please enter your message.</span>
+        </div>
+
+        <button class="btn-submit" type="submit">Send message</button>
+      </form>
+
+      <div class="form-success" id="formSuccess" role="status" aria-live="polite">
+        Thank you — your message has been sent. I'll be in touch soon.
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-copy">
+        <p>&copy; Copyright &mdash; Namrata Agarwal 2026</p>
+        <p>Made in Sweden with love, vibe-coding and the awesome <a href="https://rsms.me/inter/" target="_blank" rel="noopener noreferrer">Inter</a> typeface created by <a href="https://rsms.me/" target="_blank" rel="noopener noreferrer">Rasmus Andersson</a>.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── Lightbox ── -->
+  <div
+    class="lightbox"
+    id="lightbox"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Image viewer"
+    aria-hidden="true"
+  >
+    <button class="lb-close" id="lbClose" aria-label="Close image viewer">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false">
+        <line x1="2" y1="2" x2="16" y2="16"/>
+        <line x1="16" y1="2" x2="2" y2="16"/>
+      </svg>
+    </button>
+    <img class="lb-img" id="lbImg" src="" alt="">
+    <p class="lb-caption" id="lbCaption" aria-hidden="true"></p>
+  </div>
+
+  <script>
+    // ── Mobile nav ──
+    const menuBtn   = document.getElementById('menuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    const iconLines = '<line x1="2" y1="6" x2="20" y2="6"/><line x1="2" y1="11" x2="20" y2="11"/><line x1="2" y1="16" x2="20" y2="16"/>';
+    const iconClose = '<line x1="4" y1="4" x2="18" y2="18"/><line x1="18" y1="4" x2="4" y2="18"/>';
+
+    menuBtn.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', open);
+      menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      menuBtn.querySelector('svg').innerHTML = open ? iconClose : iconLines;
+    });
+
+    mobileNav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuBtn.setAttribute('aria-label', 'Open menu');
+        menuBtn.querySelector('svg').innerHTML = iconLines;
+      });
+    });
+
+    // ── Lightbox ──
+    const lightbox  = document.getElementById('lightbox');
+    const lbImg     = document.getElementById('lbImg');
+    const lbCaption = document.getElementById('lbCaption');
+    const lbClose   = document.getElementById('lbClose');
+    let   prevFocus;
+
+    function openLightbox(src, alt, caption) {
+      lbImg.src        = src;
+      lbImg.alt        = alt;
+      lbCaption.textContent = caption;
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      prevFocus = document.activeElement;
+      lbClose.focus();
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (prevFocus) prevFocus.focus();
+    }
+
+    document.querySelectorAll('.gallery-card a').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        openLightbox(
+          a.dataset.src,
+          a.querySelector('img').alt,
+          a.dataset.caption
+        );
+      });
+    });
+
+    lbClose.addEventListener('click', closeLightbox);
+
+    lightbox.addEventListener('click', e => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', e => {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'Tab')    { e.preventDefault(); lbClose.focus(); }
+    });
+
+    // ── Contact form ──
+    const form       = document.getElementById('contactForm');
+    const formSuccess = document.getElementById('formSuccess');
+
+    function validateField(input, errId) {
+      const err   = document.getElementById(errId);
+      const valid = input.validity.valid && input.value.trim() !== '';
+      input.setAttribute('aria-invalid', !valid);
+      err.classList.toggle('visible', !valid);
+      return valid;
+    }
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const nameOk    = validateField(document.getElementById('f-name'),    'f-name-err');
+      const emailOk   = validateField(document.getElementById('f-email'),   'f-email-err');
+      const messageOk = validateField(document.getElementById('f-message'), 'f-message-err');
+
+      if (nameOk && emailOk && messageOk) {
+        form.style.display = 'none';
+        formSuccess.classList.add('visible');
+      } else {
+        // move focus to first invalid field
+        form.querySelector('[aria-invalid="true"]')?.focus();
+      }
+    });
+
+    // live inline validation on blur
+    ['f-name', 'f-email', 'f-message'].forEach((id, i) => {
+      const errIds = ['f-name-err', 'f-email-err', 'f-message-err'];
+      document.getElementById(id).addEventListener('blur', function () {
+        validateField(this, errIds[i]);
+      });
+    });
+  </script>
+
+</body>
+</html>
