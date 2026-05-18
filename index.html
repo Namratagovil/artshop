@@ -551,6 +551,12 @@
 
       .footer-inner { flex-direction: column; align-items: flex-start; }
     }
+
+    /* ─── Gallery tabs ─── */
+    .gallery-panel { display: none; }
+    .gallery-panel.active { display: block; }
+    .nav-links a.active { color: var(--black); }
+    .nav-mobile a.active { color: var(--black); }
   </style>
 </head>
 <body>
@@ -563,8 +569,8 @@
       <a class="nav-logo" href="#" aria-label="Namrata Agarwal — home">Namrata Agarwal</a>
 
       <ul class="nav-links" role="list">
-        <li><a href="#art">Art</a></li>
-        <li><a href="#photographs">Photographs</a></li>
+        <li><a href="#art" class="nav-tab" data-panel="art">Art</a></li>
+        <li><a href="#photographs" class="nav-tab" data-panel="photographs">Photographs</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
 
@@ -578,8 +584,8 @@
     </nav>
 
     <nav id="mobileNav" class="nav-mobile" aria-label="Mobile">
-      <a href="#art">Art</a>
-      <a href="#photographs">Photographs</a>
+      <a href="#art" class="nav-tab" data-panel="art">Art</a>
+      <a href="#photographs" class="nav-tab" data-panel="photographs">Photographs</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
@@ -595,7 +601,7 @@
     <div class="rule" role="presentation"></div>
 
     <!-- ── Art Gallery ── -->
-    <section class="gallery-section" id="art" aria-labelledby="gallery-eyebrow">
+    <section class="gallery-section gallery-panel" id="art" aria-labelledby="gallery-eyebrow">
       <p class="section-eyebrow" id="gallery-eyebrow">Selected Works</p>
 
       <div class="gallery-grid" role="list">
@@ -869,10 +875,8 @@
       </div>
     </section>
 
-    <div class="rule" role="presentation"></div>
-
     <!-- ── Photographs ── -->
-    <section class="gallery-section" id="photographs" aria-labelledby="photos-eyebrow">
+    <section class="gallery-section gallery-panel" id="photographs" aria-labelledby="photos-eyebrow">
       <p class="section-eyebrow" id="photos-eyebrow">Photographs</p>
 
       <div class="gallery-grid" role="list">
@@ -1140,6 +1144,7 @@
       menuBtn.querySelector('svg').innerHTML = open ? iconClose : iconLines;
     });
 
+    // close mobile nav on any link click
     mobileNav.querySelectorAll('a').forEach(a => {
       a.addEventListener('click', () => {
         mobileNav.classList.remove('open');
@@ -1148,6 +1153,33 @@
         menuBtn.querySelector('svg').innerHTML = iconLines;
       });
     });
+
+    // ── Gallery tabs ──
+    const galleryPanels = document.querySelectorAll('.gallery-panel');
+    const navTabLinks   = document.querySelectorAll('.nav-tab');
+
+    function showPanel(panelId) {
+      galleryPanels.forEach(p => p.classList.remove('active'));
+      navTabLinks.forEach(a => a.classList.remove('active'));
+      const panel = document.getElementById(panelId);
+      if (panel) panel.classList.add('active');
+      navTabLinks.forEach(a => {
+        if (a.dataset.panel === panelId) a.classList.add('active');
+      });
+    }
+
+    navTabLinks.forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        showPanel(a.dataset.panel);
+        history.replaceState(null, '', '#' + a.dataset.panel);
+      });
+    });
+
+    // initialise: honour URL hash, default to art
+    const initialPanel = ['art', 'photographs'].includes(location.hash.slice(1))
+      ? location.hash.slice(1) : 'art';
+    showPanel(initialPanel);
 
     // ── Lightbox ──
     const lightbox  = document.getElementById('lightbox');
@@ -1186,19 +1218,20 @@
     });
 
     lbClose.addEventListener('click', closeLightbox);
-
-    lightbox.addEventListener('click', e => {
-      if (e.target === lightbox) closeLightbox();
-    });
-
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
     document.addEventListener('keydown', e => {
       if (!lightbox.classList.contains('open')) return;
       if (e.key === 'Escape') closeLightbox();
       if (e.key === 'Tab')    { e.preventDefault(); lbClose.focus(); }
     });
 
-    // ── Contact form ──
-    const form       = document.getElementById('contactForm');
+    // ── Contact form (Formspree) ──
+    // Setup: go to https://formspree.io, sign up, create a form for
+    // namratagovil@gmail.com, then replace YOUR_FORM_ID below with the
+    // ID from your form's endpoint URL (e.g. "xpzgwlkj").
+    const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+
+    const form        = document.getElementById('contactForm');
     const formSuccess = document.getElementById('formSuccess');
 
     function validateField(input, errId) {
@@ -1209,22 +1242,43 @@
       return valid;
     }
 
-    form.addEventListener('submit', e => {
+    form.addEventListener('submit', async e => {
       e.preventDefault();
       const nameOk    = validateField(document.getElementById('f-name'),    'f-name-err');
       const emailOk   = validateField(document.getElementById('f-email'),   'f-email-err');
       const messageOk = validateField(document.getElementById('f-message'), 'f-message-err');
 
-      if (nameOk && emailOk && messageOk) {
-        form.style.display = 'none';
-        formSuccess.classList.add('visible');
-      } else {
-        // move focus to first invalid field
+      if (!nameOk || !emailOk || !messageOk) {
         form.querySelector('[aria-invalid="true"]')?.focus();
+        return;
+      }
+
+      const btn = form.querySelector('.btn-submit');
+      btn.disabled    = true;
+      btn.textContent = 'Sending…';
+
+      try {
+        const res = await fetch(FORMSPREE_ENDPOINT, {
+          method:  'POST',
+          body:    new FormData(form),
+          headers: { Accept: 'application/json' }
+        });
+        if (res.ok) {
+          form.style.display = 'none';
+          formSuccess.classList.add('visible');
+        } else {
+          const data = await res.json();
+          btn.disabled    = false;
+          btn.textContent = 'Send message';
+          alert(data.errors?.map(er => er.message).join(', ') || 'Something went wrong. Please try again.');
+        }
+      } catch {
+        btn.disabled    = false;
+        btn.textContent = 'Send message';
+        alert('Could not send message. Please email directly at namratagovil@gmail.com');
       }
     });
 
-    // live inline validation on blur
     ['f-name', 'f-email', 'f-message'].forEach((id, i) => {
       const errIds = ['f-name-err', 'f-email-err', 'f-message-err'];
       document.getElementById(id).addEventListener('blur', function () {
