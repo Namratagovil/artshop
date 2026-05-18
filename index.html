@@ -1225,12 +1225,7 @@
       if (e.key === 'Tab')    { e.preventDefault(); lbClose.focus(); }
     });
 
-    // ── Contact form (Formspree) ──
-    // Setup: go to https://formspree.io, sign up, create a form for
-    // namratagovil@gmail.com, then replace YOUR_FORM_ID below with the
-    // ID from your form's endpoint URL (e.g. "xpzgwlkj").
-    const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
-
+    // ── Contact form ──
     const form        = document.getElementById('contactForm');
     const formSuccess = document.getElementById('formSuccess');
 
@@ -1242,7 +1237,7 @@
       return valid;
     }
 
-    form.addEventListener('submit', async e => {
+    form.addEventListener('submit', e => {
       e.preventDefault();
       const nameOk    = validateField(document.getElementById('f-name'),    'f-name-err');
       const emailOk   = validateField(document.getElementById('f-email'),   'f-email-err');
@@ -1253,30 +1248,17 @@
         return;
       }
 
-      const btn = form.querySelector('.btn-submit');
-      btn.disabled    = true;
-      btn.textContent = 'Sending…';
+      const name    = document.getElementById('f-name').value.trim();
+      const email   = document.getElementById('f-email').value.trim();
+      const message = document.getElementById('f-message').value.trim();
 
-      try {
-        const res = await fetch(FORMSPREE_ENDPOINT, {
-          method:  'POST',
-          body:    new FormData(form),
-          headers: { Accept: 'application/json' }
-        });
-        if (res.ok) {
-          form.style.display = 'none';
-          formSuccess.classList.add('visible');
-        } else {
-          const data = await res.json();
-          btn.disabled    = false;
-          btn.textContent = 'Send message';
-          alert(data.errors?.map(er => er.message).join(', ') || 'Something went wrong. Please try again.');
-        }
-      } catch {
-        btn.disabled    = false;
-        btn.textContent = 'Send message';
-        alert('Could not send message. Please email directly at namratagovil@gmail.com');
-      }
+      const subject = encodeURIComponent('Portfolio enquiry from ' + name);
+      const body    = encodeURIComponent('From: ' + name + '\nEmail: ' + email + '\n\n' + message);
+
+      window.location.href = 'mailto:namratagovil@gmail.com?subject=' + subject + '&body=' + body;
+
+      form.style.display = 'none';
+      formSuccess.classList.add('visible');
     });
 
     ['f-name', 'f-email', 'f-message'].forEach((id, i) => {
