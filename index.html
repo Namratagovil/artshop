@@ -1398,6 +1398,7 @@
         e.preventDefault();
         showPanel(a.dataset.panel);
         history.replaceState(null, '', '#' + a.dataset.panel);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       });
     });
 
