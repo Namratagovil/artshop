@@ -62,7 +62,7 @@ artshop/
 ### Step 5 — Photograph naming from image content (`d2b874f`)
 - Reviewed each photograph file and assigned descriptive captions based on image content (e.g. `100_0589.JPG` → "Fishing Boat", `DSC00046.JPG` → "Fatehpur Sikri").
 
-### Step 6 — Order Flow with Formspree modal (`current`)
+### Step 6 — Order Flow with Formspree modal (`66f218a`)
 - **Order button**: Added an `"Order Painting"` button to every Art gallery card. The button appears on hover (top-right corner), styled as a small pill against the image. Photographs do not have order buttons (they are not for sale).
 - **Pricing data**: Each art card now carries `data-title` and `data-price` HTML attributes. Prices are placeholder values in GBP — update them directly in `index.html` or in `assets.json` and re-sync.
 - **Order modal**: A sleek slide-up modal (`role="dialog"`, `aria-modal="true"`) with a dark blurred backdrop. When opened it auto-fills the painting title and price from the card's data attributes.
@@ -74,6 +74,16 @@ artshop/
 - **No checkout / no payment**: The order note at the bottom of the modal makes clear that no payment is collected here — it is purely an inquiry that the artist confirms manually.
 - **Accessibility**: Focus is trapped inside the modal, Escape closes it, focus returns to the triggering button on close.
 - **Documentation & assets manifest**: Created `DOCUMENTATION.md` (this file) and `assets.json`.
+
+### Step 7 — Header and layout polish (`69abaca`)
+- Reduced sticky header height from `48px` to `32px` to minimise chrome above the fold.
+- Removed the border-bottom from the header — the page reads cleaner without the dividing line.
+- Simplified the contact section (removed the form; retained email link only).
+
+### Step 8 — Hero padding reduction and divider removal (`352a11b`, current)
+- Reduced hero top padding from `5.5rem` to `3rem` (48 px) and bottom padding from `4rem` to `2rem` (32 px), tightening the gap between the nav and gallery.
+- Removed the `<div class="rule">` horizontal rule that previously separated the hero from the gallery eyebrow, eliminating the visual gap and decorative line between the two sections.
+- Removed the associated `.rule` CSS rule.
 
 ---
 
