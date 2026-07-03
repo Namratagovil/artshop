@@ -28,7 +28,8 @@ artshop/
 ├── DOCUMENTATION.md     # This file
 ├── assets.json          # Asset manifest with titles, prices, and metadata
 ├── assets_art/          # Original artwork images (37 files, .JPG / .jpg)
-└── assets_photographs/  # Photography images (26 files, .JPG)
+├── assets_photographs/  # Photography images (26 files, .JPG)
+└── assets_site/         # Site-chrome images (e.g. swish-qr.png)
 ```
 
 ---
@@ -64,7 +65,7 @@ artshop/
 
 ### Step 6 — Order Flow with Formspree modal (`66f218a`)
 - **Order button**: Added an `"Order Painting"` button to every Art gallery card. The button appears on hover (top-right corner), styled as a small pill against the image. Photographs do not have order buttons (they are not for sale).
-- **Pricing data**: Each art card now carries `data-title` and `data-price` HTML attributes. Prices are placeholder values in GBP — update them directly in `index.html` or in `assets.json` and re-sync.
+- **Pricing data**: Each art card now carries `data-title` and `data-price` HTML attributes. Prices are placeholder values (see Step 9 for currency) — update them directly in `index.html` or in `assets.json` and re-sync.
 - **Order modal**: A sleek slide-up modal (`role="dialog"`, `aria-modal="true"`) with a dark blurred backdrop. When opened it auto-fills the painting title and price from the card's data attributes.
 - **Form fields** (inside the modal):
   - Hidden: `painting_title`, `painting_price` (pre-filled, sent with every submission)
@@ -85,14 +86,30 @@ artshop/
 - Removed the `<div class="rule">` horizontal rule that previously separated the hero from the gallery eyebrow, eliminating the visual gap and decorative line between the two sections.
 - Removed the associated `.rule` CSS rule.
 
+### Step 9 — Sweden-only shipping, PostNord surcharge note, and Swish payment (current)
+- **Currency switched to SEK**: All 38 `data-price` attributes changed from `£XXX` to `XXX kr`; `assets.json` metadata currency changed from `GBP` to `SEK`. The numeric values were carried over as-is from the old GBP placeholders and have **not** been converted to realistic SEK amounts — update them before relying on real pricing.
+- **Sweden-only shipping**: Added a hint below the Shipping Address field stating shipping is only available within Sweden. This is informational only — the field remains free text and is not validated against country.
+- **PostNord packing surcharge**: The order note under the submit button now discloses that a PostNord packing surcharge may apply for larger/framed pieces, with the exact amount confirmed by email (no fixed fee is baked into the site).
+- **Swish payment on confirmation**: The post-submit success panel now shows a "Pay via Swish" block:
+  - Desktop (`min-width: 769px`): shows the Swish QR code image (`assets_site/swish-qr.png`).
+  - Mobile (`max-width: 768px`): shows the Swish phone number as a `tel:` link instead of the QR image.
+  - Toggled purely via a CSS `@media (max-width: 768px)` query (same breakpoint the rest of the site already uses for mobile) — no JavaScript device detection needed.
+  - A note reminds buyers to wait for the confirmation email (with final amount, incl. any PostNord surcharge) before paying.
+- **Focus trap fix**: Added `a[href]` to the modal's focus-trap selector so the new Swish phone link participates correctly in Tab/Shift+Tab cycling.
+
 ---
 
 ## How to Update Prices
 
 Prices live in two places. Update both to stay in sync:
 
-1. **`index.html`** — find the art `<div class="gallery-card">` for the painting and change `data-price="£XXX"`.
+1. **`index.html`** — find the art `<div class="gallery-card">` for the painting and change `data-price="XXX kr"`.
 2. **`assets.json`** — find the matching entry in `"art"` array and change `"price"`.
+
+## How to Update Swish Payment Details
+
+1. **QR code**: replace `assets_site/swish-qr.png` with a new export from the Swish app (same filename, or update the `src` in the `.swish-pay` block in `index.html`).
+2. **Phone number**: update both the visible text and the `tel:` href on `.swish-phone-link` in `index.html`.
 
 ---
 

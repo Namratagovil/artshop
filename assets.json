@@ -2,9 +2,9 @@
   "metadata": {
     "owner": "Namrata Agarwal",
     "contact": "namratagovil@gmail.com",
-    "currency": "GBP",
-    "note": "Prices are indicative placeholders. Update data-price in index.html and the price field here to keep both in sync.",
-    "last_updated": "2026-05-20"
+    "currency": "SEK",
+    "note": "Prices are indicative placeholders in SEK (kr) — they carry over the old GBP numbers as-is and have not been converted to realistic SEK values yet. Update data-price in index.html and the price field here to keep both in sync.",
+    "last_updated": "2026-07-03"
   },
   "art": [
     { "file": "assets_art/bearded man.JPG",             "title": "Bearded Man",             "price": 150, "category": "portrait" },

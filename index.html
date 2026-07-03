@@ -707,6 +707,58 @@
       line-height: 1.8;
     }
     .order-success.visible { display: block; }
+    .order-success p { margin: 0; }
+
+    .field-hint {
+      font-size: .6875rem;
+      font-weight: 300;
+      color: var(--mid);
+      margin-top: .4rem;
+      line-height: 1.5;
+    }
+
+    .swish-pay {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--light);
+      text-align: center;
+    }
+    .swish-pay-title {
+      font-size: .6875rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: .9rem;
+    }
+    .swish-qr-img {
+      width: 160px;
+      height: auto;
+      display: block;
+      margin: 0 auto .75rem;
+    }
+    .swish-phone-link {
+      display: none;
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--black);
+      text-decoration: none;
+      letter-spacing: .02em;
+    }
+    .swish-phone-link:hover,
+    .swish-phone-link:focus-visible { text-decoration: underline; }
+    .swish-pay-note {
+      font-size: .75rem;
+      font-weight: 300;
+      color: var(--mid);
+      margin-top: .75rem;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .swish-qr-img { display: none; }
+      .swish-phone-link { display: inline-block; }
+    }
 
     @media (max-width: 480px) {
       .order-modal-box { padding: 1.5rem; }
@@ -759,7 +811,7 @@
 
       <div class="gallery-grid" role="list">
 
-        <div class="gallery-card" role="listitem" data-title="Bearded Man" data-price="£150">
+        <div class="gallery-card" role="listitem" data-title="Bearded Man" data-price="150 kr">
           <a href="#" aria-label="View: Bearded Man" data-src="assets_art/bearded%20man.JPG" data-caption="Bearded Man">
             <img src="assets_art/bearded%20man.JPG" alt="Bearded Man" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Bearded Man</span>
@@ -767,7 +819,7 @@
           <button class="order-btn" type="button" aria-label="Order painting: Bearded Man">Order Painting</button>
         </div>
 
-        <div class="gallery-card" role="listitem" data-title="Christmas Trees" data-price="£120">
+        <div class="gallery-card" role="listitem" data-title="Christmas Trees" data-price="120 kr">
           <a href="#" aria-label="View: Christmas Trees" data-src="assets_art/christmas%20trees.jpg" data-caption="Christmas Trees">
             <img src="assets_art/christmas%20trees.jpg" alt="Christmas Trees" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Christmas Trees</span>
@@ -775,7 +827,7 @@
           <button class="order-btn" type="button" aria-label="Order painting: Christmas Trees">Order Painting</button>
         </div>
 
-        <div class="gallery-card" role="listitem" data-title="Cleopatra" data-price="£200">
+        <div class="gallery-card" role="listitem" data-title="Cleopatra" data-price="200 kr">
           <a href="#" aria-label="View: Cleopatra" data-src="assets_art/cleopatra.JPG" data-caption="Cleopatra">
             <img src="assets_art/cleopatra.JPG" alt="Cleopatra" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Cleopatra</span>
@@ -783,7 +835,7 @@
           <button class="order-btn" type="button" aria-label="Order painting: Cleopatra">Order Painting</button>
         </div>
 
-        <div class="gallery-card" role="listitem" data-title="Dahlia" data-price="£180">
+        <div class="gallery-card" role="listitem" data-title="Dahlia" data-price="180 kr">
           <a href="#" aria-label="View: Dahlia" data-src="assets_art/dahlia.JPG" data-caption="Dahlia">
             <img src="assets_art/dahlia.JPG" alt="Dahlia" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Dahlia</span>
@@ -791,7 +843,7 @@
           <button class="order-btn" type="button" aria-label="Order painting: Dahlia">Order Painting</button>
         </div>
 
-        <div class="gallery-card" role="listitem" data-title="Deer Card" data-price="£75">
+        <div class="gallery-card" role="listitem" data-title="Deer Card" data-price="75 kr">
           <a href="#" aria-label="View: Deer Card" data-src="assets_art/deer%20card.JPG" data-caption="Deer Card">
             <img src="assets_art/deer%20card.JPG" alt="Deer Card" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Deer Card</span>
@@ -799,7 +851,7 @@
           <button class="order-btn" type="button" aria-label="Order painting: Deer Card">Order Painting</button>
         </div>
 
-        <div class="gallery-card" role="listitem" data-title="Elephant and Water" data-price="£220">
+        <div class="gallery-card" role="listitem" data-title="Elephant and Water" data-price="220 kr">
           <a href="#" aria-label="View: Elephant and Water" data-src="assets_art/elephant%20and%20water.jpg" data-caption="Elephant and Water">
             <img src="assets_art/elephant%20and%20water.jpg" alt="Elephant and Water" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Elephant and Water</span>
@@ -807,7 +859,7 @@
           <button class="order-btn" type="button" aria-label="Order painting: Elephant and Water">Order Painting</button>
         </div>
 
-        <div class="gallery-card" role="listitem" data-title="Elephant Card" data-price="£75">
+        <div class="gallery-card" role="listitem" data-title="Elephant Card" data-price="75 kr">
           <a href="#" aria-label="View: Elephant Card" data-src="assets_art/elephant%20card.JPG" data-caption="Elephant Card">
             <img src="assets_art/elephant%20card.JPG" alt="Elephant Card" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Elephant Card</span>
@@ -815,7 +867,7 @@
           <button class="order-btn" type="button" aria-label="Order painting: Elephant Card">Order Painting</button>
         </div>
 
-        <div class="gallery-card" role="listitem" data-title="Emotions" data-price="£250">
+        <div class="gallery-card" role="listitem" data-title="Emotions" data-price="250 kr">
           <a href="#" aria-label="View: Emotions" data-src="assets_art/emotions.JPG" data-caption="Emotions">
             <img src="assets_art/emotions.JPG" alt="Emotions" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Emotions</span>
@@ -823,7 +875,7 @@
           <button class="order-btn" type="button" aria-label="Order painting: Emotions">Order Painting</button>
         </div>
 
-        <div class="gallery-card" role="listitem" data-title="Eye" data-price="£180">
+        <div class="gallery-card" role="listitem" data-title="Eye" data-price="180 kr">
           <a href="#" aria-label="View: Eye" data-src="assets_art/eye.JPG" data-caption="Eye">
             <img src="assets_art/eye.JPG" alt="Eye" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Eye</span>
@@ -831,7 +883,7 @@
           <button class="order-btn" type="button" aria-label="Order painting: Eye">Order Painting</button>
         </div>
 
-        <div class="gallery-card" role="listitem" data-title="Face Bun" data-price="£160">
+        <div class="gallery-card" role="listitem" data-title="Face Bun" data-price="160 kr">
           <a href="#" aria-label="View: Face Bun" data-src="assets_art/face%20bun.JPG" data-caption="Face Bun">
             <img src="assets_art/face%20bun.JPG" alt="Face Bun" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Face Bun</span>
@@ -839,7 +891,7 @@
           <button class="order-btn" type="button" aria-label="Order painting: Face Bun">Order Painting</button>
         </div>
 
-        <div class="gallery-card" role="listitem" data-title="Flower Girl" data-price="£200">
+        <div class="gallery-card" role="listitem" data-title="Flower Girl" data-price="200 kr">
           <a href="#" aria-label="View: Flower Girl" data-src="assets_art/flower%20girl.JPG" data-caption="Flower Girl">
             <img src="assets_art/flower%20girl.JPG" alt="Flower Girl" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Flower Girl</span>
@@ -847,7 +899,7 @@
           <button class="order-btn" type="button" aria-label="Order painting: Flower Girl">Order Painting</button>
         </div>
 
-        <div class="gallery-card" role="listitem" data-title="Folk Man" data-price="£150">
+        <div class="gallery-card" role="listitem" data-title="Folk Man" data-price="150 kr">
           <a href="#" aria-label="View: Folk Man" data-src="assets_art/folk%20man.JPG" data-caption="Folk Man">
             <img src="assets_art/folk%20man.JPG" alt="Folk Man" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Folk Man</span>
@@ -855,7 +907,7 @@
           <button class="order-btn" type="button" aria-label="Order painting: Folk Man">Order Painting</button>
         </div>
 
-        <div class="gallery-card" role="listitem" data-title="Folk Woman" data-price="£150">
+        <div class="gallery-card" role="listitem" data-title="Folk Woman" data-price="150 kr">
           <a href="#" aria-label="View: Folk Woman" data-src="assets_art/folk%20woman.JPG" data-caption="Folk Woman">
             <img src="assets_art/folk%20woman.JPG" alt="Folk Woman" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Folk Woman</span>
@@ -863,7 +915,7 @@
           <button class="order-btn" type="button" aria-label="Order painting: Folk Woman">Order Painting</button>
         </div>
 
-        <div class="gallery-card" role="listitem" data-title="Gautam" data-price="£280">
+        <div class="gallery-card" role="listitem" data-title="Gautam" data-price="280 kr">
           <a href="#" aria-label="View: Gautam" data-src="assets_art/gautam.JPG" data-caption="Gautam">
             <img src="assets_art/gautam.JPG" alt="Gautam" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Gautam</span>
@@ -871,7 +923,7 @@
           <button class="order-btn" type="button" aria-label="Order painting: Gautam">Order Painting</button>
         </div>
 
-        <div class="gallery-card" role="listitem" data-title="Girl Reaching the Stars" data-price="£220">
+        <div class="gallery-card" role="listitem" data-title="Girl Reaching the Stars" data-price="220 kr">
           <a href="#" aria-label="View: Girl Reaching the Stars" data-src="assets_art/girl%20reaching%20the%20stars.JPG" data-caption="Girl Reaching the Stars">
             <img src="assets_art/girl%20reaching%20the%20stars.JPG" alt="Girl Reaching the Stars" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Girl Reaching the Stars</span>
@@ -879,7 +931,7 @@
           <button class="order-btn" type="button" aria-label="Order painting: Girl Reaching the Stars">Order Painting</button>
         </div>
 
-        <div class="gallery-card" role="listitem" data-title="Gond Tree of Life" data-price="£300">
+        <div class="gallery-card" role="listitem" data-title="Gond Tree of Life" data-price="300 kr">
           <a href="#" aria-label="View: Gond Tree of Life" data-src="assets_art/gond%20tree%20of%20life.JPG" data-caption="Gond Tree of Life">
             <img src="assets_art/gond%20tree%20of%20life.JPG" alt="Gond Tree of Life" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Gond Tree of Life</span>
@@ -887,7 +939,7 @@
           <button class="order-btn" type="button" aria-label="Order painting: Gond Tree of Life">Order Painting</button>
         </div>
 
-        <div class="gallery-card" role="listitem" data-title="Head Covered Girl" data-price="£180">
+        <div class="gallery-card" role="listitem" data-title="Head Covered Girl" data-price="180 kr">
           <a href="#" aria-label="View: Head Covered Girl" data-src="assets_art/head%20covered%20girl.JPG" data-caption="Head Covered Girl">
             <img src="assets_art/head%20covered%20girl.JPG" alt="Head Covered Girl" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Head Covered Girl</span>
@@ -895,7 +947,7 @@
           <button class="order-btn" type="button" aria-label="Order painting: Head Covered Girl">Order Painting</button>
         </div>
 
-        <div class="gallery-card" role="listitem" data-title="Indian Woman" data-price="£200">
+        <div class="gallery-card" role="listitem" data-title="Indian Woman" data-price="200 kr">
           <a href="#" aria-label="View: Indian Woman" data-src="assets_art/indian%20woman.JPG" data-caption="Indian Woman">
             <img src="assets_art/indian%20woman.JPG" alt="Indian Woman" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Indian Woman</span>
@@ -903,7 +955,7 @@
           <button class="order-btn" type="button" aria-label="Order painting: Indian Woman">Order Painting</button>
         </div>
 
-        <div class="gallery-card" role="listitem" data-title="Lion Card" data-price="£75">
+        <div class="gallery-card" role="listitem" data-title="Lion Card" data-price="75 kr">
           <a href="#" aria-label="View: Lion Card" data-src="assets_art/lion%20card.JPG" data-caption="Lion Card">
             <img src="assets_art/lion%20card.JPG" alt="Lion Card" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Lion Card</span>
@@ -911,7 +963,7 @@
           <button class="order-btn" type="button" aria-label="Order painting: Lion Card">Order Painting</button>
         </div>
 
-        <div class="gallery-card" role="listitem" data-title="Lotus Card" data-price="£75">
+        <div class="gallery-card" role="listitem" data-title="Lotus Card" data-price="75 kr">
           <a href="#" aria-label="View: Lotus Card" data-src="assets_art/lotus%20card.JPG" data-caption="Lotus Card">
             <img src="assets_art/lotus%20card.JPG" alt="Lotus Card" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Lotus Card</span>
@@ -919,7 +971,7 @@
           <button class="order-btn" type="button" aria-label="Order painting: Lotus Card">Order Painting</button>
         </div>
 
-        <div class="gallery-card" role="listitem" data-title="Lotus in Pond" data-price="£200">
+        <div class="gallery-card" role="listitem" data-title="Lotus in Pond" data-price="200 kr">
           <a href="#" aria-label="View: Lotus in Pond" data-src="assets_art/lotus%20in%20pond.jpg" data-caption="Lotus in Pond">
             <img src="assets_art/lotus%20in%20pond.jpg" alt="Lotus in Pond" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Lotus in Pond</span>
@@ -927,7 +979,7 @@
           <button class="order-btn" type="button" aria-label="Order painting: Lotus in Pond">Order Painting</button>
         </div>
 
-        <div class="gallery-card" role="listitem" data-title="Lotus Tree of Life" data-price="£250">
+        <div class="gallery-card" role="listitem" data-title="Lotus Tree of Life" data-price="250 kr">
           <a href="#" aria-label="View: Lotus Tree of Life" data-src="assets_art/lotus%20tree%20of%20life.JPG" data-caption="Lotus Tree of Life">
             <img src="assets_art/lotus%20tree%20of%20life.JPG" alt="Lotus Tree of Life" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Lotus Tree of Life</span>
@@ -935,7 +987,7 @@
           <button class="order-btn" type="button" aria-label="Order painting: Lotus Tree of Life">Order Painting</button>
         </div>
 
-        <div class="gallery-card" role="listitem" data-title="Man in Sky" data-price="£220">
+        <div class="gallery-card" role="listitem" data-title="Man in Sky" data-price="220 kr">
           <a href="#" aria-label="View: Man in Sky" data-src="assets_art/man%20in%20sky.JPG" data-caption="Man in Sky">
             <img src="assets_art/man%20in%20sky.JPG" alt="Man in Sky" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Man in Sky</span>
@@ -943,7 +995,7 @@
           <button class="order-btn" type="button" aria-label="Order painting: Man in Sky">Order Painting</button>
         </div>
 
-        <div class="gallery-card" role="listitem" data-title="Man Looking at Sky" data-price="£200">
+        <div class="gallery-card" role="listitem" data-title="Man Looking at Sky" data-price="200 kr">
           <a href="#" aria-label="View: Man Looking at Sky" data-src="assets_art/man%20looking%20at%20sky.JPG" data-caption="Man Looking at Sky">
             <img src="assets_art/man%20looking%20at%20sky.JPG" alt="Man Looking at Sky" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Man Looking at Sky</span>
@@ -951,7 +1003,7 @@
           <button class="order-btn" type="button" aria-label="Order painting: Man Looking at Sky">Order Painting</button>
         </div>
 
-        <div class="gallery-card" role="listitem" data-title="One Dahlia" data-price="£160">
+        <div class="gallery-card" role="listitem" data-title="One Dahlia" data-price="160 kr">
           <a href="#" aria-label="View: One Dahlia" data-src="assets_art/one%20dahlia.JPG" data-caption="One Dahlia">
             <img src="assets_art/one%20dahlia.JPG" alt="One Dahlia" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">One Dahlia</span>
@@ -959,7 +1011,7 @@
           <button class="order-btn" type="button" aria-label="Order painting: One Dahlia">Order Painting</button>
         </div>
 
-        <div class="gallery-card" role="listitem" data-title="Paper Cut Lotus" data-price="£180">
+        <div class="gallery-card" role="listitem" data-title="Paper Cut Lotus" data-price="180 kr">
           <a href="#" aria-label="View: Paper Cut Lotus" data-src="assets_art/paper%20cut%20lotus.JPG" data-caption="Paper Cut Lotus">
             <img src="assets_art/paper%20cut%20lotus.JPG" alt="Paper Cut Lotus" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Paper Cut Lotus</span>
@@ -967,7 +1019,7 @@
           <button class="order-btn" type="button" aria-label="Order painting: Paper Cut Lotus">Order Painting</button>
         </div>
 
-        <div class="gallery-card" role="listitem" data-title="Paper Cut Tree of Life" data-price="£200">
+        <div class="gallery-card" role="listitem" data-title="Paper Cut Tree of Life" data-price="200 kr">
           <a href="#" aria-label="View: Paper Cut Tree of Life" data-src="assets_art/paper%20cut%20tree%20of%20life.JPG" data-caption="Paper Cut Tree of Life">
             <img src="assets_art/paper%20cut%20tree%20of%20life.JPG" alt="Paper Cut Tree of Life" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Paper Cut Tree of Life</span>
@@ -975,7 +1027,7 @@
           <button class="order-btn" type="button" aria-label="Order painting: Paper Cut Tree of Life">Order Painting</button>
         </div>
 
-        <div class="gallery-card" role="listitem" data-title="Peacock Tree of Life" data-price="£280">
+        <div class="gallery-card" role="listitem" data-title="Peacock Tree of Life" data-price="280 kr">
           <a href="#" aria-label="View: Peacock Tree of Life" data-src="assets_art/peacock%20tree%20of%20life.JPG" data-caption="Peacock Tree of Life">
             <img src="assets_art/peacock%20tree%20of%20life.JPG" alt="Peacock Tree of Life" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Peacock Tree of Life</span>
@@ -983,7 +1035,7 @@
           <button class="order-btn" type="button" aria-label="Order painting: Peacock Tree of Life">Order Painting</button>
         </div>
 
-        <div class="gallery-card" role="listitem" data-title="Red Lotus" data-price="£200">
+        <div class="gallery-card" role="listitem" data-title="Red Lotus" data-price="200 kr">
           <a href="#" aria-label="View: Red Lotus" data-src="assets_art/red%20lotus.JPG" data-caption="Red Lotus">
             <img src="assets_art/red%20lotus.JPG" alt="Red Lotus" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Red Lotus</span>
@@ -991,7 +1043,7 @@
           <button class="order-btn" type="button" aria-label="Order painting: Red Lotus">Order Painting</button>
         </div>
 
-        <div class="gallery-card" role="listitem" data-title="Red Moon" data-price="£220">
+        <div class="gallery-card" role="listitem" data-title="Red Moon" data-price="220 kr">
           <a href="#" aria-label="View: Red Moon" data-src="assets_art/red%20moon.JPG" data-caption="Red Moon">
             <img src="assets_art/red%20moon.JPG" alt="Red Moon" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Red Moon</span>
@@ -999,7 +1051,7 @@
           <button class="order-btn" type="button" aria-label="Order painting: Red Moon">Order Painting</button>
         </div>
 
-        <div class="gallery-card" role="listitem" data-title="Rumi Darwaza Lucknow" data-price="£300">
+        <div class="gallery-card" role="listitem" data-title="Rumi Darwaza Lucknow" data-price="300 kr">
           <a href="#" aria-label="View: Rumi Darwaza Lucknow" data-src="assets_art/rumi%20darwaza%20lucknow.JPG" data-caption="Rumi Darwaza Lucknow">
             <img src="assets_art/rumi%20darwaza%20lucknow.JPG" alt="Rumi Darwaza Lucknow" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Rumi Darwaza Lucknow</span>
@@ -1007,7 +1059,7 @@
           <button class="order-btn" type="button" aria-label="Order painting: Rumi Darwaza Lucknow">Order Painting</button>
         </div>
 
-        <div class="gallery-card" role="listitem" data-title="Small Tree of Life" data-price="£180">
+        <div class="gallery-card" role="listitem" data-title="Small Tree of Life" data-price="180 kr">
           <a href="#" aria-label="View: Small Tree of Life" data-src="assets_art/small%20tree%20of%20life.JPG" data-caption="Small Tree of Life">
             <img src="assets_art/small%20tree%20of%20life.JPG" alt="Small Tree of Life" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Small Tree of Life</span>
@@ -1015,7 +1067,7 @@
           <button class="order-btn" type="button" aria-label="Order painting: Small Tree of Life">Order Painting</button>
         </div>
 
-        <div class="gallery-card" role="listitem" data-title="Sun Moon Water Colour" data-price="£220">
+        <div class="gallery-card" role="listitem" data-title="Sun Moon Water Colour" data-price="220 kr">
           <a href="#" aria-label="View: Sun Moon Water Colour" data-src="assets_art/sun%20moon%20water%20color.jpg" data-caption="Sun Moon Water Colour">
             <img src="assets_art/sun%20moon%20water%20color.jpg" alt="Sun Moon Water Colour" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Sun Moon Water Colour</span>
@@ -1023,7 +1075,7 @@
           <button class="order-btn" type="button" aria-label="Order painting: Sun Moon Water Colour">Order Painting</button>
         </div>
 
-        <div class="gallery-card" role="listitem" data-title="Tiger and Lion Card" data-price="£85">
+        <div class="gallery-card" role="listitem" data-title="Tiger and Lion Card" data-price="85 kr">
           <a href="#" aria-label="View: Tiger and Lion Card" data-src="assets_art/tiger%20and%20lion%20card.JPG" data-caption="Tiger and Lion Card">
             <img src="assets_art/tiger%20and%20lion%20card.JPG" alt="Tiger and Lion Card" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Tiger and Lion Card</span>
@@ -1031,7 +1083,7 @@
           <button class="order-btn" type="button" aria-label="Order painting: Tiger and Lion Card">Order Painting</button>
         </div>
 
-        <div class="gallery-card" role="listitem" data-title="Tiger Card" data-price="£75">
+        <div class="gallery-card" role="listitem" data-title="Tiger Card" data-price="75 kr">
           <a href="#" aria-label="View: Tiger Card" data-src="assets_art/tiger%20card.JPG" data-caption="Tiger Card">
             <img src="assets_art/tiger%20card.JPG" alt="Tiger Card" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Tiger Card</span>
@@ -1039,7 +1091,7 @@
           <button class="order-btn" type="button" aria-label="Order painting: Tiger Card">Order Painting</button>
         </div>
 
-        <div class="gallery-card" role="listitem" data-title="Tree of Life Box" data-price="£250">
+        <div class="gallery-card" role="listitem" data-title="Tree of Life Box" data-price="250 kr">
           <a href="#" aria-label="View: Tree of Life Box" data-src="assets_art/tree%20of%20life%20box.jpg" data-caption="Tree of Life Box">
             <img src="assets_art/tree%20of%20life%20box.jpg" alt="Tree of Life Box" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Tree of Life Box</span>
@@ -1047,7 +1099,7 @@
           <button class="order-btn" type="button" aria-label="Order painting: Tree of Life Box">Order Painting</button>
         </div>
 
-        <div class="gallery-card" role="listitem" data-title="Two Ladies" data-price="£250">
+        <div class="gallery-card" role="listitem" data-title="Two Ladies" data-price="250 kr">
           <a href="#" aria-label="View: Two Ladies" data-src="assets_art/two%20ladies.jpg" data-caption="Two Ladies">
             <img src="assets_art/two%20ladies.jpg" alt="Two Ladies" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Two Ladies</span>
@@ -1055,7 +1107,7 @@
           <button class="order-btn" type="button" aria-label="Order painting: Two Ladies">Order Painting</button>
         </div>
 
-        <div class="gallery-card" role="listitem" data-title="Water Reflections" data-price="£200">
+        <div class="gallery-card" role="listitem" data-title="Water Reflections" data-price="200 kr">
           <a href="#" aria-label="View: Water Reflections" data-src="assets_art/water%20reflections.JPG" data-caption="Water Reflections">
             <img src="assets_art/water%20reflections.JPG" alt="Water Reflections" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Water Reflections</span>
@@ -1336,7 +1388,8 @@
 
         <div class="form-group">
           <label class="field-label" for="o-address">Shipping Address</label>
-          <textarea class="field-textarea" id="o-address" name="shipping_address" required aria-required="true" placeholder="Street, city, postcode, country" style="min-height:100px"></textarea>
+          <textarea class="field-textarea" id="o-address" name="shipping_address" required aria-required="true" placeholder="Street, postcode, city, Sweden" style="min-height:100px"></textarea>
+          <p class="field-hint">Shipping is currently only available within Sweden.</p>
         </div>
 
         <div class="form-group">
@@ -1345,11 +1398,18 @@
         </div>
 
         <button class="btn-submit" type="submit">Send Order Request</button>
-        <p class="order-note">No payment is collected here. I'll confirm availability and send payment details by email.</p>
+        <p class="order-note">No payment is collected automatically. I'll confirm availability by email — a PostNord packing surcharge may apply for larger or framed pieces.</p>
       </form>
 
       <div class="order-success" id="orderSuccess" role="status" aria-live="polite">
-        Thank you — your order inquiry has been received. I'll be in touch within 2–3 business days with availability and next steps.
+        <p>Thank you — your order inquiry has been received. I'll be in touch within 2–3 business days with availability and next steps.</p>
+
+        <div class="swish-pay">
+          <p class="swish-pay-title">Pay via Swish</p>
+          <img src="assets_site/swish-qr.png" alt="Swish QR code — scan with your bank's Swish app to pay" class="swish-qr-img">
+          <a href="tel:+46734965590" class="swish-phone-link">073-496 75 90</a>
+          <p class="swish-pay-note">Please wait for my confirmation email with the final amount (including any PostNord packing surcharge) before sending payment.</p>
+        </div>
       </div>
 
     </div>
@@ -1451,49 +1511,6 @@
       if (e.key === 'Tab')    { e.preventDefault(); lbClose.focus(); }
     });
 
-    // ── Contact form ──
-    const form        = document.getElementById('contactForm');
-    const formSuccess = document.getElementById('formSuccess');
-
-    function validateField(input, errId) {
-      const err   = document.getElementById(errId);
-      const valid = input.validity.valid && input.value.trim() !== '';
-      input.setAttribute('aria-invalid', !valid);
-      err.classList.toggle('visible', !valid);
-      return valid;
-    }
-
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      const nameOk    = validateField(document.getElementById('f-name'),    'f-name-err');
-      const emailOk   = validateField(document.getElementById('f-email'),   'f-email-err');
-      const messageOk = validateField(document.getElementById('f-message'), 'f-message-err');
-
-      if (!nameOk || !emailOk || !messageOk) {
-        form.querySelector('[aria-invalid="true"]')?.focus();
-        return;
-      }
-
-      const name    = document.getElementById('f-name').value.trim();
-      const email   = document.getElementById('f-email').value.trim();
-      const message = document.getElementById('f-message').value.trim();
-
-      const subject = encodeURIComponent('Portfolio enquiry from ' + name);
-      const body    = encodeURIComponent('From: ' + name + '\nEmail: ' + email + '\n\n' + message);
-
-      window.location.href = 'mailto:namratagovil@gmail.com?subject=' + subject + '&body=' + body;
-
-      form.style.display = 'none';
-      formSuccess.classList.add('visible');
-    });
-
-    ['f-name', 'f-email', 'f-message'].forEach((id, i) => {
-      const errIds = ['f-name-err', 'f-email-err', 'f-message-err'];
-      document.getElementById(id).addEventListener('blur', function () {
-        validateField(this, errIds[i]);
-      });
-    });
-
     // ── Order Modal ──
     (function () {
       const modal       = document.getElementById('orderModal');
@@ -1551,7 +1568,7 @@
       modal.addEventListener('keydown', e => {
         if (e.key !== 'Tab') return;
         const focusable = Array.from(modal.querySelectorAll(
-          'button:not([disabled]), input:not([disabled]), textarea:not([disabled])'
+          'button:not([disabled]), input:not([disabled]), textarea:not([disabled]), a[href]'
         )).filter(el => getComputedStyle(el).display !== 'none');
         if (!focusable.length) return;
         const first = focusable[0];
