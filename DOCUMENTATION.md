@@ -96,6 +96,13 @@ artshop/
   - Toggled purely via a CSS `@media (max-width: 768px)` query (same breakpoint the rest of the site already uses for mobile) — no JavaScript device detection needed.
   - A note reminds buyers to wait for the confirmation email (with final amount, incl. any PostNord surcharge) before paying.
 - **Focus trap fix**: Added `a[href]` to the modal's focus-trap selector so the new Swish phone link participates correctly in Tab/Shift+Tab cycling.
+- **Bug fix**: removed a leftover contact-form validation script (`#contactForm`, `#f-name`, etc.) that referenced DOM elements deleted back in Step 7. It threw an uncaught error on every page load, which silently prevented the Order Modal script further down the same `<script>` block from ever running — the "Order Painting" button did nothing. This is now fixed.
+
+### Step 10 — Real pricing pass, renamed pieces, and photograph ordering (current)
+- **Pricing pass**: Updated `assets.json` and `index.html` with the owner's actual SEK prices (mostly 200 kr, with 600 kr and 1500 kr for larger/more detailed pieces) and added a `size` field per art piece (e.g. `"21 x 29.7 cm"`) to the manifest. `size` is not yet surfaced in the UI.
+- **Renamed pieces**: `Deer Card` → `Tribal Deer`, `Elephant Card` → `Solo Elephant`, `Lion Card` → `Lion`, `Lotus Card` → `Lotus`, `Tiger and Lion Card` → `Tiger and Lion`, `Tiger Card` → `Tiger`. Updated everywhere the old name appeared (`data-title`, captions, `alt`, `aria-label`s) — image filenames were left unchanged.
+- **Photographs are now orderable**: Added an "Order Photograph" button to every Photographs card (previously view-only), reusing the same Order Modal as Art. Since photograph pricing depends on print size, `data-price` holds descriptive text ("Depending on the size you request, I'll price it accordingly.") instead of a number. `assets.json`'s `"photographs"` array now carries matching `price`/`size` text fields.
+- **Reminder**: `assets.json` is a manifest only — `index.html` does not fetch it at runtime. The two must keep being updated together by hand (see "How to Update Prices" below).
 
 ---
 
