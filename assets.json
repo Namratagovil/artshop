@@ -7,102 +7,672 @@
     "last_updated": "2026-07-03"
   },
   "art": [
-    { "file": "assets_art/bearded man.JPG",                "title": "Bearded Man",                "price": 200, "size": "21 x 29.7 cm", "category": "portrait"  },
-    { "file": "assets_art/bus.jpg",                        "title": "Bus",                        "price": 600, "size": "21 x 29.7 cm", "category": "portrait"  },
-    { "file": "assets_art/christmas trees.jpg",            "title": "Christmas Trees",            "price": 200, "size": "21 x 29.7 cm", "category": "nature"  },
-    { "file": "assets_art/citylights.JPG",                 "title": "Citylights",                 "price": 600, "size": "21 x 29.7 cm", "category": "portrait"  },
-    { "file": "assets_art/cleopatra.JPG",                  "title": "Cleopatra",                  "price": 200, "size": "21 x 29.7 cm", "category": "portrait"  },
-    { "file": "assets_art/Cows.jpg",                       "title": "Cows",                       "price": 600, "size": "21 x 29.7 cm", "category": "portrait"  },
-    { "file": "assets_art/dahlia.JPG",                     "title": "Dahlia",                     "price": 200, "size": "21 x 29.7 cm", "category": "nature"  },
-    { "file": "assets_art/dancing peacock.jpg",            "title": "Dancing Peacock",            "price": 200, "size": "21 x 29.7 cm", "category": "portrait"  },
-    { "file": "assets_art/dancing woman.jpg",              "title": "Dancing Woman",              "price": 600, "size": "21 x 29.7 cm", "category": "portrait"  },
-    { "file": "assets_art/deer card.JPG",                  "title": "Tribal Deer",                "price": 200, "size": "21 x 29.7 cm", "category": "card"  },
-    { "file": "assets_art/deer with tree of life.jpg",     "title": "Deer with Tree of Life",     "price": 600, "size": "21 x 29.7 cm", "category": "portrait"  },
-    { "file": "assets_art/elephant and water.jpg",         "title": "Elephant and Water",         "price": 200, "size": "21 x 29.7 cm", "category": "nature"  },
-    { "file": "assets_art/elephant card.JPG",              "title": "Solo Elephant",              "price": 200, "size": "21 x 29.7 cm", "category": "card"  },
-    { "file": "assets_art/emotions.JPG",                   "title": "Emotions",                   "price": 200, "size": "21 x 29.7 cm", "category": "abstract"  },
-    { "file": "assets_art/eye.JPG",                        "title": "Eye",                        "price": 200, "size": "21 x 29.7 cm", "category": "portrait"  },
-    { "file": "assets_art/face bun.JPG",                   "title": "Face Bun",                   "price": 200, "size": "21 x 29.7 cm", "category": "portrait"  },
-    { "file": "assets_art/five women.jpeg",                "title": "Five Women",                 "price": 600, "size": "21 x 29.7 cm", "category": "portrait"  },
-    { "file": "assets_art/floating lotus.jpg",             "title": "Floating Lotus",             "price": 600, "size": "21 x 29.7 cm", "category": "portrait"  },
-    { "file": "assets_art/flock of birds.jpg",             "title": "Flock of Birds",             "price": 600, "size": "21 x 29.7 cm", "category": "portrait"  },
-    { "file": "assets_art/flower girl.JPG",                "title": "Flower Girl",                "price": 200, "size": "21 x 29.7 cm", "category": "portrait"  },
-    { "file": "assets_art/folk man.JPG",                   "title": "Folk Man",                   "price": 200, "size": "21 x 29.7 cm", "category": "portrait"  },
-    { "file": "assets_art/folk woman.JPG",                 "title": "Folk Woman",                 "price": 200, "size": "21 x 29.7 cm", "category": "portrait"  },
-    { "file": "assets_art/gautam.JPG",                     "title": "Gautam",                     "price": 200, "size": "21 x 29.7 cm", "category": "portrait"  },
-    { "file": "assets_art/geometric flower.JPG",           "title": "Geometric Flower",           "price": 600, "size": "21 x 29.7 cm", "category": "portrait"  },
-    { "file": "assets_art/girl reaching the stars.JPG",    "title": "Girl Reaching the Stars",    "price": 200, "size": "21 x 29.7 cm", "category": "figurative"  },
-    { "file": "assets_art/gond tree of life.JPG",          "title": "Gond Tree of Life",          "price": 600, "size": "21 x 29.7 cm", "category": "folk"  },
-    { "file": "assets_art/Gotland church.jpg",             "title": "Gotland Church",             "price": 600, "size": "21 x 29.7 cm", "category": "portrait"  },
-    { "file": "assets_art/head covered girl.JPG",          "title": "Head Covered Girl",          "price": 200, "size": "21 x 29.7 cm", "category": "portrait"  },
-    { "file": "assets_art/indian woman.JPG",               "title": "Indian Woman",               "price": 200, "size": "21 x 29.7 cm", "category": "portrait"  },
-    { "file": "assets_art/krishna.jpg",                    "title": "Krishna",                    "price": 200, "size": "21 x 29.7 cm", "category": "portrait"  },
-    { "file": "assets_art/leaves.jpg",                     "title": "Leaves",                     "price": 200, "size": "21 x 29.7 cm", "category": "portrait"  },
-    { "file": "assets_art/lion card.JPG",                  "title": "Lion",                       "price": 200, "size": "21 x 29.7 cm", "category": "card"  },
-    { "file": "assets_art/lotus card.JPG",                 "title": "Lotus",                      "price": 200, "size": "21 x 29.7 cm", "category": "card"  },
-    { "file": "assets_art/lotus in pond.jpg",              "title": "Lotus in Pond",              "price": 200, "size": "21 x 29.7 cm", "category": "nature"  },
-    { "file": "assets_art/lotus tree of life.JPG",         "title": "Lotus Tree of Life",         "price": 600, "size": "21 x 29.7 cm", "category": "folk"  },
-    { "file": "assets_art/man in sky.JPG",                 "title": "Man in Sky",                 "price": 200, "size": "21 x 29.7 cm", "category": "figurative"  },
-    { "file": "assets_art/man looking at sky.JPG",         "title": "Man Looking at Sky",         "price": 200, "size": "21 x 29.7 cm", "category": "figurative"  },
-    { "file": "assets_art/monochrome tree of life.jpg",    "title": "Monochrome Tree of Life",    "price": 200, "size": "21 x 29.7 cm", "category": "portrait"  },
-    { "file": "assets_art/moon.JPG",                       "title": "Moon",                       "price": 600, "size": "21 x 29.7 cm", "category": "portrait"  },
-    { "file": "assets_art/morning glory.jpg",              "title": "Morning Glory",              "price": 200, "size": "21 x 29.7 cm", "category": "portrait"  },
-    { "file": "assets_art/one dahlia.JPG",                 "title": "One Dahlia",                 "price": 200, "size": "21 x 29.7 cm", "category": "nature"  },
-    { "file": "assets_art/paper cut flower.jpg",           "title": "Paper Cut Flower",           "price": 200, "size": "21 x 29.7 cm", "category": "paper-cut"  },
-    { "file": "assets_art/paper cut lotus.JPG",            "title": "Paper Cut Lotus",            "price": 600, "size": "21 x 29.7 cm", "category": "paper-cut"  },
-    { "file": "assets_art/paper cut tree of life.JPG",     "title": "Paper Cut Tree of Life",     "price": 600, "size": "21 x 29.7 cm", "category": "paper-cut"  },
-    { "file": "assets_art/peacock madhubani.jpg",          "title": "Peacock Madhubani",          "price": 200, "size": "21 x 29.7 cm", "category": "portrait"  },
-    { "file": "assets_art/peacock tree of life.JPG",       "title": "Peacock Tree of Life",       "price": 600, "size": "21 x 29.7 cm", "category": "folk"  },
-    { "file": "assets_art/Plant nursery.jpg",              "title": "Plant Nursery",              "price": 2000, "size": "50 x 90 cm", "category": "portrait"  },
-    { "file": "assets_art/red lotus.JPG",                  "title": "Red Lotus",                  "price": 600, "size": "21 x 29.7 cm", "category": "nature"  },
-    { "file": "assets_art/red moon.JPG",                   "title": "Red Moon",                   "price": 600, "size": "21 x 29.7 cm", "category": "portrait"  },
-    { "file": "assets_art/reflection on water.jpg",        "title": "Reflection on Water",        "price": 200, "size": "21 x 29.7 cm", "category": "portrait"  },
-    { "file": "assets_art/rising sun.jpeg",                "title": "Rising Sun",                 "price": 600, "size": "21 x 29.7 cm", "category": "portrait"  },
-    { "file": "assets_art/rumi darwaza lucknow.JPG",       "title": "Rumi Darwaza Lucknow",       "price": 200, "size": "21 x 29.7 cm", "category": "architecture"  },
-    { "file": "assets_art/sea and land.jpeg",              "title": "Sea and Land",               "price": 600, "size": "21 x 29.7 cm", "category": "portrait"  },
-    { "file": "assets_art/Singing birds.jpg",              "title": "Singing Birds",              "price": 600, "size": "21 x 29.7 cm", "category": "portrait"  },
-    { "file": "assets_art/slide.jpg",                      "title": "Slide",                      "price": 200, "size": "21 x 29.7 cm", "category": "portrait"  },
-    { "file": "assets_art/small tree of life.JPG",         "title": "Small Tree of Life",         "price": 200, "size": "21 x 29.7 cm", "category": "folk"  },
-    { "file": "assets_art/sun and moon.JPG",               "title": "Sun and Moon",               "price": 800, "size": "21 x 29.7 cm", "category": "portrait"  },
-    { "file": "assets_art/sun moon water color.jpg",       "title": "Sun Moon Water Colour",      "price": 200, "size": "21 x 29.7 cm", "category": "abstract"  },
-    { "file": "assets_art/the woman.jpg",                  "title": "The Woman",                  "price": 200, "size": "21 x 29.7 cm", "category": "portrait"  },
-    { "file": "assets_art/tiger and lion card.JPG",        "title": "Tiger and Lion",             "price": 200, "size": "21 x 29.7 cm", "category": "card"  },
-    { "file": "assets_art/tiger card.JPG",                 "title": "Tiger",                      "price": 600, "size": "21 x 29.7 cm", "category": "card"  },
-    { "file": "assets_art/tree of life box.jpg",           "title": "Tree of Life Box",           "price": 1500, "size": "21 x 21 cm", "category": "folk"  },
-    { "file": "assets_art/tree of life with peacock.jpg",  "title": "Tree of Life with Peacock",  "price": 200, "size": "21 x 29.7 cm", "category": "portrait"  },
-    { "file": "assets_art/trosa strand.jpg",               "title": "Trosa Strand",               "price": 2500, "size": "50 x 90 cm", "category": "portrait"  },
-    { "file": "assets_art/two ladies.jpg",                 "title": "Two Ladies",                 "price": 200, "size": "21 x 29.7 cm", "category": "portrait"  },
-    { "file": "assets_art/water reflections.JPG",          "title": "Water Reflections",          "price": 200, "size": "21 x 29.7 cm", "category": "nature"  },
-    { "file": "assets_art/wedding.jpg",                    "title": "Wedding",                    "price": 600, "size": "21 x 29.7 cm", "category": "portrait"  },
-    { "file": "assets_art/woodpeker.jpg",                  "title": "Woodpecker",                 "price": 200, "size": "21 x 29.7 cm", "category": "portrait"  },
-    { "file": "assets_art/Yellow lotus.jpg",               "title": "Yellow Lotus",               "price": 600, "size": "21 x 29.7 cm", "category": "portrait"  }
+    {
+      "file": "assets_art/bearded man.JPG",
+      "title": "Bearded Man",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/bus.jpg",
+      "title": "Bus",
+      "price": 1000,
+      "size": "21 x 29.7 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/christmas trees.jpg",
+      "title": "Christmas Trees",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "nature"
+    },
+    {
+      "file": "assets_art/citylights.JPG",
+      "title": "Citylights",
+      "price": 1000,
+      "size": "21 x 29.7 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/cleopatra.JPG",
+      "title": "Cleopatra",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/Cows.jpg",
+      "title": "Cows",
+      "price": 1000,
+      "size": "21 x 29.7 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/dahlia.JPG",
+      "title": "Dahlia",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "nature"
+    },
+    {
+      "file": "assets_art/dancing peacock.jpg",
+      "title": "Dancing Peacock",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/dancing woman.jpg",
+      "title": "Dancing Woman",
+      "price": 1000,
+      "size": "21 x 29.7 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/deer card.JPG",
+      "title": "Tribal Deer",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "card"
+    },
+    {
+      "file": "assets_art/deer with tree of life.jpg",
+      "title": "Deer with Tree of Life",
+      "price": 1000,
+      "size": "21 x 29.7 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/elephant and water.jpg",
+      "title": "Elephant and Water",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "nature"
+    },
+    {
+      "file": "assets_art/elephant card.JPG",
+      "title": "Solo Elephant",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "card"
+    },
+    {
+      "file": "assets_art/emotions.JPG",
+      "title": "Emotions",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "abstract"
+    },
+    {
+      "file": "assets_art/eye.JPG",
+      "title": "Eye",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/face bun.JPG",
+      "title": "Face Bun",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/five women.jpeg",
+      "title": "Five Women",
+      "price": 1000,
+      "size": "21 x 29.7 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/floating lotus.jpg",
+      "title": "Floating Lotus",
+      "price": 1000,
+      "size": "21 x 29.7 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/flock of birds.jpg",
+      "title": "Flock of Birds",
+      "price": 1000,
+      "size": "21 x 29.7 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/flower girl.JPG",
+      "title": "Flower Girl",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/folk man.JPG",
+      "title": "Folk Man",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/folk woman.JPG",
+      "title": "Folk Woman",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/gautam.JPG",
+      "title": "Gautam",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/geometric flower.JPG",
+      "title": "Geometric Flower",
+      "price": 1000,
+      "size": "21 x 29.7 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/girl reaching the stars.JPG",
+      "title": "Girl Reaching the Stars",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "figurative"
+    },
+    {
+      "file": "assets_art/gond tree of life.JPG",
+      "title": "Gond Tree of Life",
+      "price": 1000,
+      "size": "21 x 29.7 cm",
+      "category": "folk"
+    },
+    {
+      "file": "assets_art/Gotland church.jpg",
+      "title": "Gotland Church",
+      "price": 1000,
+      "size": "21 x 29.7 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/head covered girl.JPG",
+      "title": "Head Covered Girl",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/indian woman.JPG",
+      "title": "Indian Woman",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/krishna.jpg",
+      "title": "Krishna",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/leaves.jpg",
+      "title": "Leaves",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/lion card.JPG",
+      "title": "Lion",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "card"
+    },
+    {
+      "file": "assets_art/lotus card.JPG",
+      "title": "Lotus",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "card"
+    },
+    {
+      "file": "assets_art/lotus in pond.jpg",
+      "title": "Lotus in Pond",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "nature"
+    },
+    {
+      "file": "assets_art/lotus tree of life.JPG",
+      "title": "Lotus Tree of Life",
+      "price": 1000,
+      "size": "21 x 29.7 cm",
+      "category": "folk"
+    },
+    {
+      "file": "assets_art/man in sky.JPG",
+      "title": "Man in Sky",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "figurative"
+    },
+    {
+      "file": "assets_art/man looking at sky.JPG",
+      "title": "Man Looking at Sky",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "figurative"
+    },
+    {
+      "file": "assets_art/monochrome tree of life.jpg",
+      "title": "Monochrome Tree of Life",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/moon.JPG",
+      "title": "Moon",
+      "price": 1000,
+      "size": "21 x 29.7 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/morning glory.jpg",
+      "title": "Morning Glory",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/one dahlia.JPG",
+      "title": "One Dahlia",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "nature"
+    },
+    {
+      "file": "assets_art/paper cut flower.jpg",
+      "title": "Paper Cut Flower",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "paper-cut"
+    },
+    {
+      "file": "assets_art/paper cut lotus.JPG",
+      "title": "Paper Cut Lotus",
+      "price": 1000,
+      "size": "21 x 29.7 cm",
+      "category": "paper-cut"
+    },
+    {
+      "file": "assets_art/paper cut tree of life.JPG",
+      "title": "Paper Cut Tree of Life",
+      "price": 1000,
+      "size": "21 x 29.7 cm",
+      "category": "paper-cut"
+    },
+    {
+      "file": "assets_art/peacock madhubani.jpg",
+      "title": "Peacock Madhubani",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/peacock tree of life.JPG",
+      "title": "Peacock Tree of Life",
+      "price": 1000,
+      "size": "21 x 29.7 cm",
+      "category": "folk"
+    },
+    {
+      "file": "assets_art/Plant nursery.jpg",
+      "title": "Plant Nursery",
+      "price": 2000,
+      "size": "50 x 90 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/red lotus.JPG",
+      "title": "Red Lotus",
+      "price": 1000,
+      "size": "21 x 29.7 cm",
+      "category": "nature"
+    },
+    {
+      "file": "assets_art/red moon.JPG",
+      "title": "Red Moon",
+      "price": 1000,
+      "size": "21 x 29.7 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/reflection on water.jpg",
+      "title": "Reflection on Water",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/rising sun.jpeg",
+      "title": "Rising Sun",
+      "price": 1000,
+      "size": "21 x 29.7 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/rumi darwaza lucknow.JPG",
+      "title": "Rumi Darwaza Lucknow",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "architecture"
+    },
+    {
+      "file": "assets_art/sea and land.jpeg",
+      "title": "Sea and Land",
+      "price": 1000,
+      "size": "21 x 29.7 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/Singing birds.jpg",
+      "title": "Singing Birds",
+      "price": 1000,
+      "size": "21 x 29.7 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/slide.jpg",
+      "title": "Slide",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/small tree of life.JPG",
+      "title": "Small Tree of Life",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "folk"
+    },
+    {
+      "file": "assets_art/sun and moon.JPG",
+      "title": "Sun and Moon",
+      "price": 800,
+      "size": "21 x 29.7 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/sun moon water color.jpg",
+      "title": "Sun Moon Water Colour",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "abstract"
+    },
+    {
+      "file": "assets_art/the woman.jpg",
+      "title": "The Woman",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/tiger and lion card.JPG",
+      "title": "Tiger and Lion",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "card"
+    },
+    {
+      "file": "assets_art/tiger card.JPG",
+      "title": "Tiger",
+      "price": 1000,
+      "size": "21 x 29.7 cm",
+      "category": "card"
+    },
+    {
+      "file": "assets_art/tree of life box.jpg",
+      "title": "Tree of Life Box",
+      "price": 1500,
+      "size": "21 x 21 cm",
+      "category": "folk"
+    },
+    {
+      "file": "assets_art/tree of life with peacock.jpg",
+      "title": "Tree of Life with Peacock",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/trosa strand.jpg",
+      "title": "Trosa Strand",
+      "price": 2500,
+      "size": "50 x 90 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/two ladies.jpg",
+      "title": "Two Ladies",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/water reflections.JPG",
+      "title": "Water Reflections",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "nature"
+    },
+    {
+      "file": "assets_art/wedding.jpg",
+      "title": "Wedding",
+      "price": 1000,
+      "size": "21 x 29.7 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/woodpeker.jpg",
+      "title": "Woodpecker",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "portrait"
+    },
+    {
+      "file": "assets_art/Yellow lotus.jpg",
+      "title": "Yellow Lotus",
+      "price": 1000,
+      "size": "21 x 29.7 cm",
+      "category": "portrait"
+    }
   ],
   "photographs": [
-    { "file": "assets_photographs/100_0589.JPG",  "title": "Fishing Boat",     "price": "Depening on size you request, we price it accorindinly", "size": "Whatever you want, we support all sizes", "category": "travel" },
-    { "file": "assets_photographs/100_0597.JPG",  "title": "Banana Stall",     "price": "Depening on size you request, we price it accorindinly", "size": "Whatever you want, we support all sizes","category": "street" },
-    { "file": "assets_photographs/100_1861.JPG",  "title": "Jasmine Garlands", "price": "Depening on size you request, we price it accorindinly", "size": "Whatever you want, we support all sizes","category": "street" },
-    { "file": "assets_photographs/DSC00014.JPG",  "title": "Bare Tree",        "price": "Depening on size you request, we price it accorindinly", "size": "Whatever you want, we support all sizes","category": "nature" },
-    { "file": "assets_photographs/DSC00017.JPG",  "title": "Gwalior Fort",     "price": "Depening on size you request, we price it accorindinly", "size": "Whatever you want, we support all sizes","category": "architecture" },
-    { "file": "assets_photographs/DSC00046.JPG",  "title": "Fatehpur Sikri",   "price": "Depening on size you request, we price it accorindinly", "size": "Whatever you want, we support all sizes","category": "architecture" },
-    { "file": "assets_photographs/DSC00065.JPG",  "title": "Stone Pavilion",   "price": "Depening on size you request, we price it accorindinly", "size": "Whatever you want, we support all sizes","category": "architecture" },
-    { "file": "assets_photographs/DSC01339.JPG",  "title": "Afternoon Rest",   "price": "Depening on size you request, we price it accorindinly", "size": "Whatever you want, we support all sizes","category": "people" },
-    { "file": "assets_photographs/IMG_5509.JPG",  "title": "Kite String",      "price": "Depening on size you request, we price it accorindinly", "size": "Whatever you want, we support all sizes","category": "street" },
-    { "file": "assets_photographs/IMG_5524.JPG",  "title": "Carved Door",      "price": "Depening on size you request, we price it accorindinly", "size": "Whatever you want, we support all sizes","category": "architecture" },
-    { "file": "assets_photographs/IMG_5535.JPG",  "title": "Drying Saris",     "price": "Depening on size you request, we price it accorindinly", "size": "Whatever you want, we support all sizes","category": "street" },
-    { "file": "assets_photographs/IMG_5545.JPG",  "title": "Old Luna",         "price": "Depening on size you request, we price it accorindinly", "size": "Whatever you want, we support all sizes","category": "street" },
-    { "file": "assets_photographs/IMG_5548.JPG",  "title": "Yellow Scooter",   "price": "Depening on size you request, we price it accorindinly", "size": "Whatever you want, we support all sizes","category": "street" },
-    { "file": "assets_photographs/IMG_5585.JPG",  "title": "Stone Carving",    "price": "Depening on size you request, we price it accorindinly", "size": "Whatever you want, we support all sizes","category": "architecture" },
-    { "file": "assets_photographs/IMG_5586.JPG",  "title": "Carved Niche",     "price": "Depening on size you request, we price it accorindinly", "size": "Whatever you want, we support all sizes","category": "architecture" },
-    { "file": "assets_photographs/IMG_5605.JPG",  "title": "Scooter Sidecar",  "price": "Depening on size you request, we price it accorindinly", "size": "Whatever you want, we support all sizes","category": "street" },
-    { "file": "assets_photographs/IMG_5954.JPG",  "title": "Village Cot",      "price": "Depening on size you request, we price it accorindinly", "size": "Whatever you want, we support all sizes","category": "people" },
-    { "file": "assets_photographs/IMG_5966.JPG",  "title": "Village Family",   "price": "Depening on size you request, we price it accorindinly", "size": "Whatever you want, we support all sizes","category": "people" },
-    { "file": "assets_photographs/IMG_5968.JPG",  "title": "Painted Doorway",  "price": "Depening on size you request, we price it accorindinly", "size": "Whatever you want, we support all sizes","category": "architecture" },
-    { "file": "assets_photographs/IMG_5973.JPG",  "title": "Green Window",     "price": "Depening on size you request, we price it accorindinly", "size": "Whatever you want, we support all sizes","category": "architecture" },
-    { "file": "assets_photographs/IMG_7695.JPG",  "title": "Blue Bench",       "price": "Depening on size you request, we price it accorindinly", "size": "Whatever you want, we support all sizes","category": "street" },
-    { "file": "assets_photographs/IMG_7696.JPG",  "title": "Block Printing",   "price": "Depening on size you request, we price it accorindinly", "size": "Whatever you want, we support all sizes","category": "craft" },
-    { "file": "assets_photographs/IMG_7704.JPG",  "title": "Torn Posters",     "price": "Depening on size you request, we price it accorindinly", "size": "Whatever you want, we support all sizes","category": "street" },
-    { "file": "assets_photographs/IMG_7705.JPG",  "title": "Blue Courtyard",  "price": "Depening on size you request, we price it accorindinly", "size": "Whatever you want, we support all sizes","category": "architecture" },
-    { "file": "assets_photographs/IMG_7736.JPG",  "title": "Kite Shop",        "price": "Depening on size you request, we price it accorindinly", "size": "Whatever you want, we support all sizes","category": "street" },
-    { "file": "assets_photographs/IMG_7738.JPG",  "title": "Toy Parrots",      "price": "Depening on size you request, we price it accorindinly", "size": "Whatever you want, we support all sizes","category": "street" }
+    {
+      "file": "assets_photographs/100_0589.JPG",
+      "title": "Fishing Boat",
+      "price": "Depening on size you request, we price it accorindinly",
+      "size": "Whatever you want, we support all sizes",
+      "category": "travel"
+    },
+    {
+      "file": "assets_photographs/100_0597.JPG",
+      "title": "Banana Stall",
+      "price": "Depening on size you request, we price it accorindinly",
+      "size": "Whatever you want, we support all sizes",
+      "category": "street"
+    },
+    {
+      "file": "assets_photographs/100_1861.JPG",
+      "title": "Jasmine Garlands",
+      "price": "Depening on size you request, we price it accorindinly",
+      "size": "Whatever you want, we support all sizes",
+      "category": "street"
+    },
+    {
+      "file": "assets_photographs/DSC00014.JPG",
+      "title": "Bare Tree",
+      "price": "Depening on size you request, we price it accorindinly",
+      "size": "Whatever you want, we support all sizes",
+      "category": "nature"
+    },
+    {
+      "file": "assets_photographs/DSC00017.JPG",
+      "title": "Gwalior Fort",
+      "price": "Depening on size you request, we price it accorindinly",
+      "size": "Whatever you want, we support all sizes",
+      "category": "architecture"
+    },
+    {
+      "file": "assets_photographs/DSC00046.JPG",
+      "title": "Fatehpur Sikri",
+      "price": "Depening on size you request, we price it accorindinly",
+      "size": "Whatever you want, we support all sizes",
+      "category": "architecture"
+    },
+    {
+      "file": "assets_photographs/DSC00065.JPG",
+      "title": "Stone Pavilion",
+      "price": "Depening on size you request, we price it accorindinly",
+      "size": "Whatever you want, we support all sizes",
+      "category": "architecture"
+    },
+    {
+      "file": "assets_photographs/DSC01339.JPG",
+      "title": "Afternoon Rest",
+      "price": "Depening on size you request, we price it accorindinly",
+      "size": "Whatever you want, we support all sizes",
+      "category": "people"
+    },
+    {
+      "file": "assets_photographs/IMG_5509.JPG",
+      "title": "Kite String",
+      "price": "Depening on size you request, we price it accorindinly",
+      "size": "Whatever you want, we support all sizes",
+      "category": "street"
+    },
+    {
+      "file": "assets_photographs/IMG_5524.JPG",
+      "title": "Carved Door",
+      "price": "Depening on size you request, we price it accorindinly",
+      "size": "Whatever you want, we support all sizes",
+      "category": "architecture"
+    },
+    {
+      "file": "assets_photographs/IMG_5535.JPG",
+      "title": "Drying Saris",
+      "price": "Depening on size you request, we price it accorindinly",
+      "size": "Whatever you want, we support all sizes",
+      "category": "street"
+    },
+    {
+      "file": "assets_photographs/IMG_5545.JPG",
+      "title": "Old Luna",
+      "price": "Depening on size you request, we price it accorindinly",
+      "size": "Whatever you want, we support all sizes",
+      "category": "street"
+    },
+    {
+      "file": "assets_photographs/IMG_5548.JPG",
+      "title": "Yellow Scooter",
+      "price": "Depening on size you request, we price it accorindinly",
+      "size": "Whatever you want, we support all sizes",
+      "category": "street"
+    },
+    {
+      "file": "assets_photographs/IMG_5585.JPG",
+      "title": "Stone Carving",
+      "price": "Depening on size you request, we price it accorindinly",
+      "size": "Whatever you want, we support all sizes",
+      "category": "architecture"
+    },
+    {
+      "file": "assets_photographs/IMG_5586.JPG",
+      "title": "Carved Niche",
+      "price": "Depening on size you request, we price it accorindinly",
+      "size": "Whatever you want, we support all sizes",
+      "category": "architecture"
+    },
+    {
+      "file": "assets_photographs/IMG_5605.JPG",
+      "title": "Scooter Sidecar",
+      "price": "Depening on size you request, we price it accorindinly",
+      "size": "Whatever you want, we support all sizes",
+      "category": "street"
+    },
+    {
+      "file": "assets_photographs/IMG_5954.JPG",
+      "title": "Village Cot",
+      "price": "Depening on size you request, we price it accorindinly",
+      "size": "Whatever you want, we support all sizes",
+      "category": "people"
+    },
+    {
+      "file": "assets_photographs/IMG_5966.JPG",
+      "title": "Village Family",
+      "price": "Depening on size you request, we price it accorindinly",
+      "size": "Whatever you want, we support all sizes",
+      "category": "people"
+    },
+    {
+      "file": "assets_photographs/IMG_5968.JPG",
+      "title": "Painted Doorway",
+      "price": "Depening on size you request, we price it accorindinly",
+      "size": "Whatever you want, we support all sizes",
+      "category": "architecture"
+    },
+    {
+      "file": "assets_photographs/IMG_5973.JPG",
+      "title": "Green Window",
+      "price": "Depening on size you request, we price it accorindinly",
+      "size": "Whatever you want, we support all sizes",
+      "category": "architecture"
+    },
+    {
+      "file": "assets_photographs/IMG_7695.JPG",
+      "title": "Blue Bench",
+      "price": "Depening on size you request, we price it accorindinly",
+      "size": "Whatever you want, we support all sizes",
+      "category": "street"
+    },
+    {
+      "file": "assets_photographs/IMG_7696.JPG",
+      "title": "Block Printing",
+      "price": "Depening on size you request, we price it accorindinly",
+      "size": "Whatever you want, we support all sizes",
+      "category": "craft"
+    },
+    {
+      "file": "assets_photographs/IMG_7704.JPG",
+      "title": "Torn Posters",
+      "price": "Depening on size you request, we price it accorindinly",
+      "size": "Whatever you want, we support all sizes",
+      "category": "street"
+    },
+    {
+      "file": "assets_photographs/IMG_7705.JPG",
+      "title": "Blue Courtyard",
+      "price": "Depening on size you request, we price it accorindinly",
+      "size": "Whatever you want, we support all sizes",
+      "category": "architecture"
+    },
+    {
+      "file": "assets_photographs/IMG_7736.JPG",
+      "title": "Kite Shop",
+      "price": "Depening on size you request, we price it accorindinly",
+      "size": "Whatever you want, we support all sizes",
+      "category": "street"
+    },
+    {
+      "file": "assets_photographs/IMG_7738.JPG",
+      "title": "Toy Parrots",
+      "price": "Depening on size you request, we price it accorindinly",
+      "size": "Whatever you want, we support all sizes",
+      "category": "street"
+    }
   ]
 }
