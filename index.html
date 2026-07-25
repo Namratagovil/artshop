@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'unsafe-inline'; base-uri 'self'; form-action 'none'">
   <title>Namrata Agarwal — Handmade Original Illustrations</title>
   <meta name="description" content="Handmade original illustration portfolio of Namrata Agarwal — Indo-Swedish sensibilities, capturing memories of people, scents, beauty, trees, and pathways.">
   <meta property="og:type" content="website">
@@ -74,6 +76,9 @@
       background: var(--black);
       color: var(--white);
       padding: .5rem 1rem;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
       font-size: .875rem;
       font-weight: 500;
       text-decoration: none;
@@ -95,11 +100,12 @@
     .nav-inner {
       max-width: 1280px;
       margin: 0 auto;
-      padding: 0 2rem;
-      height: 32px;
+      padding: 1.125rem 2rem;
+      min-height: 68px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 1.5rem;
     }
 
     .nav-logo {
@@ -109,6 +115,10 @@
       text-transform: uppercase;
       text-decoration: none;
       color: var(--black);
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
     }
 
     .nav-links {
@@ -125,6 +135,10 @@
       text-decoration: none;
       color: var(--mid);
       transition: color .2s;
+      /* tap area, not visual size — the row is centred so the text does not move */
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
     }
     .nav-links a:hover,
     .nav-links a:focus-visible { color: var(--black); }
@@ -147,11 +161,13 @@
       letter-spacing: .1em;
       text-transform: uppercase;
       color: var(--mid);
+      white-space: nowrap;
     }
     .switch {
       position: relative;
       width: 2.5rem;
       height: 1.3rem;
+      /* the pill stays small; the tap area below is a full 44 x 44 (WCAG 2.2) */
       flex-shrink: 0;
       padding: 0;
       border: 1px solid var(--dark);
@@ -159,6 +175,15 @@
       background: var(--off-white);
       cursor: pointer;
       transition: background .2s, border-color .2s;
+    }
+    .switch::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 44px;
+      height: 44px;
+      transform: translate(-50%, -50%);
     }
     .switch-knob {
       position: absolute;
@@ -179,7 +204,7 @@
       outline-offset: 3px;
     }
 
-    /* hamburger */
+    /* mobile menu button — word, not a hamburger glyph */
     .menu-btn {
       display: none;
       background: none;
@@ -187,11 +212,19 @@
       padding: .5rem;
       cursor: pointer;
       color: var(--black);
-      line-height: 0;
-      min-width: 44px;
+      line-height: 1;
       min-height: 44px;
+      min-width: 44px;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-end;
+    }
+    .menu-btn-text {
+      font-family: 'Inter', sans-serif;
+      font-size: .75rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--black);
     }
 
     .nav-mobile {
@@ -207,6 +240,9 @@
       text-transform: uppercase;
       text-decoration: none;
       color: var(--dark);
+      display: flex;
+      align-items: center;
+      min-height: 44px;
       padding: .875rem 2rem;
       border-bottom: 1px solid var(--light);
       transition: background .15s;
@@ -219,23 +255,6 @@
       margin: 0 auto;
       padding: 3rem 2rem 2rem;
       text-align: center;
-    }
-
-    .hero-name {
-      font-size: clamp(2.75rem, 6vw, 5.5rem);
-      font-weight: 300;
-      letter-spacing: .02em;
-      line-height: 1.08;
-      color: var(--black);
-    }
-
-    .hero-role {
-      margin-top: .75rem;
-      font-size: .8125rem;
-      font-weight: 500;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--mid);
     }
 
     .hero-intro {
@@ -317,7 +336,6 @@
       object-fit: cover;
       display: block;
     }
-    .gallery-card.portrait img { aspect-ratio: 3 / 4; }
 
     /* old hover caption is replaced by the always-visible meta bar */
     .gallery-card-caption { display: none; }
@@ -356,8 +374,8 @@
     .gallery-pagination:empty { display: none; }
 
     .page-btn {
-      min-width: 2.25rem;
-      height: 2.25rem;
+      min-width: 44px;
+      min-height: 44px;
       padding: 0 .5rem;
       border: 1px solid var(--light);
       background: var(--white);
@@ -386,45 +404,6 @@
       background: none;
       cursor: default;
       color: var(--mid);
-    }
-
-    /* ─── About ─── */
-    .about-section {
-      background: var(--off-white);
-      padding: 5.5rem 2rem;
-    }
-
-    .about-inner {
-      max-width: 1280px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6rem;
-      align-items: center;
-    }
-
-    .about-heading {
-      font-size: clamp(1.75rem, 3vw, 2.625rem);
-      font-weight: 300;
-      line-height: 1.2;
-      color: var(--black);
-      margin-bottom: 1.5rem;
-    }
-
-    .about-body {
-      font-size: .9375rem;
-      font-weight: 300;
-      color: var(--mid);
-      line-height: 1.9;
-    }
-    .about-body p + p { margin-top: 1rem; }
-
-    .about-img {
-      width: 100%;
-      aspect-ratio: 4 / 5;
-      object-fit: cover;
-      display: block;
-      background: var(--light);
     }
 
     /* ─── Contact ─── */
@@ -456,60 +435,6 @@
     }
     .contact-sub a:hover { color: var(--black); }
 
-    .contact-form {
-      margin-top: 2.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.125rem;
-      text-align: left;
-    }
-
-    .field-label {
-      display: block;
-      font-size: .6875rem;
-      font-weight: 600;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--dark);
-      margin-bottom: .375rem;
-    }
-
-    .field-input,
-    .field-textarea {
-      font-family: 'Inter', sans-serif;
-      font-size: .9375rem;
-      font-weight: 300;
-      color: var(--black);
-      background: var(--white);
-      border: 1px solid var(--light);
-      padding: .75rem 1rem;
-      width: 100%;
-      transition: border-color .2s;
-    }
-    .field-input:focus,
-    .field-textarea:focus {
-      outline: var(--focus-ring);
-      outline-offset: 0;
-      border-color: var(--black);
-    }
-    .field-input[aria-invalid="true"],
-    .field-textarea[aria-invalid="true"] {
-      border-color: #b00020;
-    }
-
-    .field-textarea {
-      resize: vertical;
-      min-height: 140px;
-    }
-
-    .field-error {
-      font-size: .75rem;
-      color: #b00020;
-      margin-top: .25rem;
-      display: none;
-    }
-    .field-error.visible { display: block; }
-
     .btn-submit {
       font-family: 'Inter', sans-serif;
       font-size: .75rem;
@@ -539,19 +464,6 @@
       outline-offset: 3px;
     }
 
-    .form-success {
-      display: none;
-      margin-top: 1.5rem;
-      padding: 1rem;
-      background: var(--off-white);
-      border-left: 3px solid var(--black);
-      font-size: .9375rem;
-      font-weight: 300;
-      color: var(--dark);
-      text-align: left;
-    }
-    .form-success.visible { display: block; }
-
     /* ─── Footer ─── */
     .site-footer {
       border-top: 1px solid var(--light);
@@ -577,21 +489,6 @@
     .footer-copy p + p {
       margin-top: .2rem;
     }
-
-    .footer-links {
-      list-style: none;
-      display: flex;
-      gap: 1.5rem;
-    }
-
-    .footer-links a {
-      font-size: .8125rem;
-      font-weight: 300;
-      color: var(--mid);
-      text-decoration: none;
-      transition: color .2s;
-    }
-    .footer-links a:hover { color: var(--black); }
 
     .footer-copy a {
       color: var(--mid);
@@ -665,8 +562,6 @@
       .nav-links { display: none; }
       .menu-btn  { display: flex; }
       .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-      .about-inner  { grid-template-columns: 1fr; gap: 2.5rem; }
-      .about-img    { order: -1; aspect-ratio: 16 / 9; }
     }
 
     @media (max-width: 480px) {
@@ -674,7 +569,6 @@
 
       .nav-inner,
       .gallery-section,
-      .about-section,
       .contact-section,
       .site-footer { padding-inline: 1.25rem; }
 
@@ -702,11 +596,16 @@
       color: #ffffff;
       background: rgba(0,0,0,.82);
       border: 1px solid rgba(255,255,255,.28);
-      padding: .38rem .75rem;
+      padding: .38rem .875rem;
       cursor: pointer;
       transition: background .15s, border-color .15s;
       z-index: 2;
-      min-height: 30px;
+      /* WCAG 2.2 touch target */
+      min-height: 44px;
+      min-width: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       white-space: nowrap;
     }
     .order-btn:hover { background: #000000; border-color: rgba(255,255,255,.65); }
@@ -797,8 +696,8 @@
       flex-shrink: 0;
       background: none;
       border: 1px solid var(--light);
-      width: 36px;
-      height: 36px;
+      width: 44px;
+      height: 44px;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -813,13 +712,6 @@
       display: flex;
       flex-direction: column;
       gap: 1.125rem;
-    }
-    .order-form .field-label .optional {
-      font-size: .5625rem;
-      letter-spacing: .05em;
-      font-weight: 400;
-      text-transform: none;
-      color: var(--mid);
     }
     .order-form .btn-submit {
       align-self: stretch;
@@ -922,20 +814,9 @@
           <li><a href="#contact">Contact</a></li>
         </ul>
 
-        <div class="theme-toggle">
-          <span class="theme-toggle-text" aria-hidden="true">Lights off?</span>
-          <button class="switch" id="themeToggle" type="button" role="switch" aria-checked="false" aria-label="Toggle dark mode">
-            <span class="switch-knob" aria-hidden="true"></span>
-          </button>
-        </div>
-
-        <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
-        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false">
-          <line x1="2" y1="6"  x2="20" y2="6"/>
-          <line x1="2" y1="11" x2="20" y2="11"/>
-          <line x1="2" y1="16" x2="20" y2="16"/>
-        </svg>
-      </button>
+        <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileNav">
+          <span class="menu-btn-text">Menu</span>
+        </button>
       </div>
     </nav>
 
@@ -1748,8 +1629,15 @@
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-copy">
-        <p>&copy; Copyright &mdash; Namrata Agarwal 2026</p>
-        <p>Made in Sweden with love and the awesome <a href="https://rsms.me/inter/" target="_blank" rel="noopener noreferrer">Inter</a> typeface created by <a href="https://rsms.me/" target="_blank" rel="noopener noreferrer">Rasmus Andersson</a>.</p>
+        <p>&copy; 2026 Namrata Agarwal</p>
+        <p>Made in Sweden with love, using the awesome <a href="https://rsms.me/inter/" target="_blank" rel="noopener noreferrer">Inter</a> typeface created by <a href="https://rsms.me/" target="_blank" rel="noopener noreferrer">Rasmus Andersson</a>.</p>
+      </div>
+
+      <div class="theme-toggle">
+        <span class="theme-toggle-text" aria-hidden="true">Lights off?</span>
+        <button class="switch" id="themeToggle" type="button" role="switch" aria-checked="false" aria-label="Toggle dark mode">
+          <span class="switch-knob" aria-hidden="true"></span>
+        </button>
       </div>
     </div>
   </footer>
@@ -1823,21 +1711,36 @@
 
   <script>
     // ── Theme toggle ──
+    // The device setting is the default: with no saved override the site follows
+    // prefers-color-scheme, live, and the switch always mirrors the active theme.
     const themeToggle = document.getElementById('themeToggle');
+    const darkQuery   = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
 
-    function syncThemeToggle() {
-      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-      themeToggle.setAttribute('aria-checked', String(isDark));
+    const deviceTheme = () => (darkQuery && darkQuery.matches ? 'dark' : 'light');
+    const savedTheme  = () => { try { return localStorage.getItem('theme'); } catch (e) { return null; } };
+
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      themeToggle.setAttribute('aria-checked', String(theme === 'dark'));
     }
-    syncThemeToggle();
+    applyTheme(savedTheme() || deviceTheme());
 
     themeToggle.addEventListener('click', () => {
-      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-      const next = isDark ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
-      try { localStorage.setItem('theme', next); } catch (e) {}
-      syncThemeToggle();
+      const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      applyTheme(next);
+      try {
+        // Choosing the device's own setting hands control back to the device.
+        if (next === deviceTheme()) localStorage.removeItem('theme');
+        else localStorage.setItem('theme', next);
+      } catch (e) {}
     });
+
+    // Follow the device if it switches while the page is open (unless overridden here).
+    if (darkQuery) {
+      const onDeviceChange = () => { if (!savedTheme()) applyTheme(deviceTheme()); };
+      if (darkQuery.addEventListener) darkQuery.addEventListener('change', onDeviceChange);
+      else if (darkQuery.addListener) darkQuery.addListener(onDeviceChange);
+    }
 
     // ── Card meta (always-visible name + price) ──
     document.querySelectorAll('.gallery-card').forEach(card => {
@@ -1878,24 +1781,21 @@
     // ── Mobile nav ──
     const menuBtn   = document.getElementById('menuBtn');
     const mobileNav = document.getElementById('mobileNav');
-    const iconLines = '<line x1="2" y1="6" x2="20" y2="6"/><line x1="2" y1="11" x2="20" y2="11"/><line x1="2" y1="16" x2="20" y2="16"/>';
-    const iconClose = '<line x1="4" y1="4" x2="18" y2="18"/><line x1="18" y1="4" x2="4" y2="18"/>';
+    const menuBtnText = menuBtn.querySelector('.menu-btn-text');
+
+    function setMenuOpen(open) {
+      mobileNav.classList.toggle('open', open);
+      menuBtn.setAttribute('aria-expanded', String(open));
+      menuBtnText.textContent = open ? 'Close' : 'Menu';
+    }
 
     menuBtn.addEventListener('click', () => {
-      const open = mobileNav.classList.toggle('open');
-      menuBtn.setAttribute('aria-expanded', open);
-      menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-      menuBtn.querySelector('svg').innerHTML = open ? iconClose : iconLines;
+      setMenuOpen(!mobileNav.classList.contains('open'));
     });
 
     // close mobile nav on any link click
     mobileNav.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        mobileNav.classList.remove('open');
-        menuBtn.setAttribute('aria-expanded', 'false');
-        menuBtn.setAttribute('aria-label', 'Open menu');
-        menuBtn.querySelector('svg').innerHTML = iconLines;
-      });
+      a.addEventListener('click', () => setMenuOpen(false));
     });
 
     // ── Gallery tabs ──
