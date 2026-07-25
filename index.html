@@ -17,6 +17,18 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script>
+    /* Set theme before first paint to avoid a flash of the wrong theme */
+    (function () {
+      try {
+        var stored = localStorage.getItem('theme');
+        var theme = stored || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
   <style>
     /* ─── Reset ─── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -33,6 +45,17 @@
       --focus-ring:  3px solid #111111;
     }
 
+    /* dark theme — token overrides so every component adapts */
+    :root[data-theme="dark"] {
+      --black:       #f4f4f4;
+      --dark:        #cfcfcf;
+      --mid:         #9a9a9a;
+      --light:       #333333;
+      --off-white:   #1c1c1c;
+      --white:       #121212;
+      --focus-ring:  3px solid #f4f4f4;
+    }
+
     /* ─── Base ─── */
     body {
       font-family: 'Inter', sans-serif;
@@ -40,6 +63,7 @@
       color: var(--black);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      transition: background .25s ease, color .25s ease;
     }
 
     /* ─── Accessibility ─── */
@@ -104,6 +128,56 @@
     }
     .nav-links a:hover,
     .nav-links a:focus-visible { color: var(--black); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+    }
+
+    /* ─── Theme toggle ─── */
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+    }
+    .theme-toggle-text {
+      font-size: .75rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+    .switch {
+      position: relative;
+      width: 2.5rem;
+      height: 1.3rem;
+      flex-shrink: 0;
+      padding: 0;
+      border: 1px solid var(--dark);
+      border-radius: 999px;
+      background: var(--off-white);
+      cursor: pointer;
+      transition: background .2s, border-color .2s;
+    }
+    .switch-knob {
+      position: absolute;
+      top: 50%;
+      left: 3px;
+      transform: translateY(-50%);
+      width: .95rem;
+      height: .95rem;
+      border-radius: 50%;
+      background: var(--black);
+      transition: left .2s;
+    }
+    .switch[aria-checked="true"] .switch-knob {
+      left: calc(100% - .95rem - 3px);
+    }
+    .switch:focus-visible {
+      outline: var(--focus-ring);
+      outline-offset: 3px;
+    }
 
     /* hamburger */
     .menu-btn {
@@ -215,11 +289,18 @@
     /* gallery card */
     .gallery-card {
       position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* image area (positioning context for the order button) */
+    .gallery-card-media {
+      position: relative;
       overflow: hidden;
       background: var(--off-white);
     }
 
-    .gallery-card:focus-within {
+    .gallery-card-media:focus-within {
       outline: var(--focus-ring);
       outline-offset: 2px;
     }
@@ -235,32 +316,31 @@
       aspect-ratio: 1 / 1;
       object-fit: cover;
       display: block;
-      transition: transform .45s ease, opacity .35s ease;
     }
     .gallery-card.portrait img { aspect-ratio: 3 / 4; }
 
-    .gallery-card:hover img,
-    .gallery-card:focus-within img {
-      transform: scale(1.04);
-      opacity: .88;
-    }
+    /* old hover caption is replaced by the always-visible meta bar */
+    .gallery-card-caption { display: none; }
 
-    .gallery-card-caption {
-      position: absolute;
-      inset-inline: 0;
-      bottom: 0;
-      padding: .625rem .875rem;
-      background: rgba(0,0,0,.72);
-      color: var(--white);
-      font-size: .75rem;
-      font-weight: 400;
-      letter-spacing: .04em;
-      transform: translateY(100%);
-      transition: transform .28s ease;
+    /* name + price — always visible below the image, stacked */
+    .gallery-card-meta {
+      display: flex;
+      flex-direction: column;
+      gap: .25rem;
+      padding: .75rem .125rem .2rem;
     }
-    .gallery-card:hover .gallery-card-caption,
-    .gallery-card:focus-within .gallery-card-caption {
-      transform: translateY(0);
+    .gallery-card-name {
+      font-size: .9375rem;
+      font-weight: 600;
+      letter-spacing: .01em;
+      color: var(--black);
+      line-height: 1.35;
+    }
+    .gallery-card-price {
+      font-size: .9375rem;
+      font-weight: 400;
+      color: var(--mid);
+      line-height: 1.35;
     }
 
     .gallery-card.is-hidden { display: none; }
@@ -609,36 +689,30 @@
     .nav-links a.active { color: var(--black); }
     .nav-mobile a.active { color: var(--black); }
 
-    /* ─── Order Button (on Art cards) ─── */
+    /* ─── Order Button (on gallery cards) ─── */
     .order-btn {
       position: absolute;
-      top: .625rem;
+      bottom: .625rem;
       right: .625rem;
       font-family: 'Inter', sans-serif;
       font-size: .5625rem;
       font-weight: 700;
       letter-spacing: .14em;
       text-transform: uppercase;
-      color: var(--white);
+      color: #ffffff;
       background: rgba(0,0,0,.82);
       border: 1px solid rgba(255,255,255,.28);
       padding: .38rem .75rem;
       cursor: pointer;
-      opacity: 0;
-      transform: translateY(-.3rem);
-      transition: opacity .22s, transform .22s, background .15s, border-color .15s;
+      transition: background .15s, border-color .15s;
       z-index: 2;
       min-height: 30px;
       white-space: nowrap;
     }
-    .gallery-card:hover .order-btn,
-    .gallery-card:focus-within .order-btn { opacity: 1; transform: translateY(0); }
-    .order-btn:hover { background: var(--black); border-color: rgba(255,255,255,.65); }
+    .order-btn:hover { background: #000000; border-color: rgba(255,255,255,.65); }
     .order-btn:focus-visible {
-      outline: 2px solid var(--white);
+      outline: 2px solid #ffffff;
       outline-offset: 2px;
-      opacity: 1;
-      transform: translateY(0);
     }
 
     /* ─── Order Modal ─── */
@@ -841,19 +915,28 @@
     <nav class="nav-inner" aria-label="Primary">
       <a class="nav-logo" href="#" aria-label="Namrata Agarwal — home">Namrata Agarwal</a>
 
-      <ul class="nav-links" role="list">
-        <li><a href="#art" class="nav-tab" data-panel="art">Art</a></li>
-        <li><a href="#photographs" class="nav-tab" data-panel="photographs">Photographs</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+      <div class="nav-right">
+        <ul class="nav-links" role="list">
+          <li><a href="#art" class="nav-tab" data-panel="art">Art</a></li>
+          <li><a href="#photographs" class="nav-tab" data-panel="photographs">Photographs</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
 
-      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+        <div class="theme-toggle">
+          <span class="theme-toggle-text" aria-hidden="true">Lights off?</span>
+          <button class="switch" id="themeToggle" type="button" role="switch" aria-checked="false" aria-label="Toggle dark mode">
+            <span class="switch-knob" aria-hidden="true"></span>
+          </button>
+        </div>
+
+        <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
         <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false">
           <line x1="2" y1="6"  x2="20" y2="6"/>
           <line x1="2" y1="11" x2="20" y2="11"/>
           <line x1="2" y1="16" x2="20" y2="16"/>
         </svg>
       </button>
+      </div>
     </nav>
 
     <nav id="mobileNav" class="nav-mobile" aria-label="Mobile">
@@ -873,7 +956,7 @@
 
     <!-- ── Art Gallery ── -->
     <section class="gallery-section gallery-panel" id="art" aria-labelledby="gallery-eyebrow">
-      <p class="section-eyebrow" id="gallery-eyebrow">Selected Works — Handmade Originals</p>
+      <p class="section-eyebrow" id="gallery-eyebrow">Nice things from me to you</p>
 
       <div class="gallery-grid" role="list">
 
@@ -882,7 +965,7 @@
             <img src="assets_art/bearded%20man.JPG" alt="Bearded Man" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Bearded Man</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Bearded Man">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Bearded Man">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Bus" data-price="1000 kr" data-size="21 x 29.7 cm">
@@ -890,7 +973,7 @@
             <img src="assets_art/bus.jpg" alt="Bus" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Bus</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Bus">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Bus">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Christmas Trees" data-price="600 kr" data-size="21 x 29.7 cm">
@@ -898,7 +981,7 @@
             <img src="assets_art/christmas%20trees.jpg" alt="Christmas Trees" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Christmas Trees</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Christmas Trees">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Christmas Trees">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Citylights" data-price="1000 kr" data-size="21 x 29.7 cm">
@@ -906,7 +989,7 @@
             <img src="assets_art/citylights.JPG" alt="Citylights" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Citylights</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Citylights">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Citylights">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Cleopatra" data-price="600 kr" data-size="21 x 29.7 cm">
@@ -914,7 +997,7 @@
             <img src="assets_art/cleopatra.JPG" alt="Cleopatra" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Cleopatra</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Cleopatra">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Cleopatra">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Cows" data-price="1000 kr" data-size="21 x 29.7 cm">
@@ -922,7 +1005,7 @@
             <img src="assets_art/Cows.jpg" alt="Cows" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Cows</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Cows">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Cows">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Dahlia" data-price="600 kr" data-size="21 x 29.7 cm">
@@ -930,7 +1013,7 @@
             <img src="assets_art/dahlia.JPG" alt="Dahlia" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Dahlia</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Dahlia">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Dahlia">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Dancing Peacock" data-price="600 kr" data-size="21 x 29.7 cm">
@@ -938,7 +1021,7 @@
             <img src="assets_art/dancing%20peacock.jpg" alt="Dancing Peacock" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Dancing Peacock</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Dancing Peacock">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Dancing Peacock">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Dancing Woman" data-price="1000 kr" data-size="21 x 29.7 cm">
@@ -946,7 +1029,7 @@
             <img src="assets_art/dancing%20woman.jpg" alt="Dancing Woman" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Dancing Woman</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Dancing Woman">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Dancing Woman">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Tribal Deer" data-price="600 kr" data-size="21 x 29.7 cm">
@@ -954,7 +1037,7 @@
             <img src="assets_art/deer%20card.JPG" alt="Tribal Deer" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Tribal Deer</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Tribal Deer">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Tribal Deer">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Deer with Tree of Life" data-price="1000 kr" data-size="21 x 29.7 cm">
@@ -962,7 +1045,7 @@
             <img src="assets_art/deer%20with%20tree%20of%20life.jpg" alt="Deer with Tree of Life" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Deer with Tree of Life</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Deer with Tree of Life">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Deer with Tree of Life">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Elephant and Water" data-price="600 kr" data-size="21 x 29.7 cm">
@@ -970,7 +1053,7 @@
             <img src="assets_art/elephant%20and%20water.jpg" alt="Elephant and Water" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Elephant and Water</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Elephant and Water">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Elephant and Water">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Solo Elephant" data-price="600 kr" data-size="21 x 29.7 cm">
@@ -978,7 +1061,7 @@
             <img src="assets_art/elephant%20card.JPG" alt="Solo Elephant" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Solo Elephant</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Solo Elephant">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Solo Elephant">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Emotions" data-price="600 kr" data-size="21 x 29.7 cm">
@@ -986,7 +1069,7 @@
             <img src="assets_art/emotions.JPG" alt="Emotions" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Emotions</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Emotions">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Emotions">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Eye" data-price="600 kr" data-size="21 x 29.7 cm">
@@ -994,7 +1077,7 @@
             <img src="assets_art/eye.JPG" alt="Eye" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Eye</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Eye">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Eye">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Face Bun" data-price="600 kr" data-size="21 x 29.7 cm">
@@ -1002,7 +1085,7 @@
             <img src="assets_art/face%20bun.JPG" alt="Face Bun" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Face Bun</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Face Bun">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Face Bun">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Five Women" data-price="1000 kr" data-size="21 x 29.7 cm">
@@ -1010,7 +1093,7 @@
             <img src="assets_art/five%20women.jpeg" alt="Five Women" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Five Women</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Five Women">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Five Women">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Floating Lotus" data-price="1000 kr" data-size="21 x 29.7 cm">
@@ -1018,7 +1101,7 @@
             <img src="assets_art/floating%20lotus.jpg" alt="Floating Lotus" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Floating Lotus</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Floating Lotus">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Floating Lotus">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Flock of Birds" data-price="1000 kr" data-size="21 x 29.7 cm">
@@ -1026,7 +1109,7 @@
             <img src="assets_art/flock%20of%20birds.jpg" alt="Flock of Birds" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Flock of Birds</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Flock of Birds">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Flock of Birds">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Flower Girl" data-price="600 kr" data-size="21 x 29.7 cm">
@@ -1034,7 +1117,7 @@
             <img src="assets_art/flower%20girl.JPG" alt="Flower Girl" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Flower Girl</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Flower Girl">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Flower Girl">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Folk Man" data-price="600 kr" data-size="21 x 29.7 cm">
@@ -1042,7 +1125,7 @@
             <img src="assets_art/folk%20man.JPG" alt="Folk Man" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Folk Man</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Folk Man">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Folk Man">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Folk Woman" data-price="600 kr" data-size="21 x 29.7 cm">
@@ -1050,7 +1133,7 @@
             <img src="assets_art/folk%20woman.JPG" alt="Folk Woman" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Folk Woman</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Folk Woman">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Folk Woman">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Gautam" data-price="600 kr" data-size="21 x 29.7 cm">
@@ -1058,7 +1141,7 @@
             <img src="assets_art/gautam.JPG" alt="Gautam" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Gautam</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Gautam">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Gautam">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Geometric Flower" data-price="1000 kr" data-size="21 x 29.7 cm">
@@ -1066,7 +1149,7 @@
             <img src="assets_art/geometric%20flower.JPG" alt="Geometric Flower" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Geometric Flower</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Geometric Flower">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Geometric Flower">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Girl Reaching the Stars" data-price="600 kr" data-size="21 x 29.7 cm">
@@ -1074,7 +1157,7 @@
             <img src="assets_art/girl%20reaching%20the%20stars.JPG" alt="Girl Reaching the Stars" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Girl Reaching the Stars</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Girl Reaching the Stars">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Girl Reaching the Stars">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Gond Tree of Life" data-price="1000 kr" data-size="21 x 29.7 cm">
@@ -1082,7 +1165,7 @@
             <img src="assets_art/gond%20tree%20of%20life.JPG" alt="Gond Tree of Life" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Gond Tree of Life</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Gond Tree of Life">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Gond Tree of Life">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Gotland Church" data-price="1000 kr" data-size="21 x 29.7 cm">
@@ -1090,7 +1173,7 @@
             <img src="assets_art/Gotland%20church.jpg" alt="Gotland Church" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Gotland Church</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Gotland Church">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Gotland Church">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Head Covered Girl" data-price="600 kr" data-size="21 x 29.7 cm">
@@ -1098,7 +1181,7 @@
             <img src="assets_art/head%20covered%20girl.JPG" alt="Head Covered Girl" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Head Covered Girl</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Head Covered Girl">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Head Covered Girl">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Indian Woman" data-price="600 kr" data-size="21 x 29.7 cm">
@@ -1106,7 +1189,7 @@
             <img src="assets_art/indian%20woman.JPG" alt="Indian Woman" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Indian Woman</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Indian Woman">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Indian Woman">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Krishna" data-price="600 kr" data-size="21 x 29.7 cm">
@@ -1114,7 +1197,7 @@
             <img src="assets_art/krishna.jpg" alt="Krishna" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Krishna</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Krishna">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Krishna">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Leaves" data-price="600 kr" data-size="21 x 29.7 cm">
@@ -1122,7 +1205,7 @@
             <img src="assets_art/leaves.jpg" alt="Leaves" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Leaves</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Leaves">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Leaves">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Lion" data-price="600 kr" data-size="21 x 29.7 cm">
@@ -1130,7 +1213,7 @@
             <img src="assets_art/lion%20card.JPG" alt="Lion" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Lion</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Lion">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Lion">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Lotus" data-price="600 kr" data-size="21 x 29.7 cm">
@@ -1138,7 +1221,7 @@
             <img src="assets_art/lotus%20card.JPG" alt="Lotus" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Lotus</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Lotus">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Lotus">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Lotus in Pond" data-price="600 kr" data-size="21 x 29.7 cm">
@@ -1146,7 +1229,7 @@
             <img src="assets_art/lotus%20in%20pond.jpg" alt="Lotus in Pond" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Lotus in Pond</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Lotus in Pond">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Lotus in Pond">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Lotus Tree of Life" data-price="1000 kr" data-size="21 x 29.7 cm">
@@ -1154,7 +1237,7 @@
             <img src="assets_art/lotus%20tree%20of%20life.JPG" alt="Lotus Tree of Life" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Lotus Tree of Life</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Lotus Tree of Life">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Lotus Tree of Life">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Man in Sky" data-price="600 kr" data-size="21 x 29.7 cm">
@@ -1162,7 +1245,7 @@
             <img src="assets_art/man%20in%20sky.JPG" alt="Man in Sky" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Man in Sky</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Man in Sky">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Man in Sky">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Man Looking at Sky" data-price="600 kr" data-size="21 x 29.7 cm">
@@ -1170,7 +1253,7 @@
             <img src="assets_art/man%20looking%20at%20sky.JPG" alt="Man Looking at Sky" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Man Looking at Sky</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Man Looking at Sky">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Man Looking at Sky">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Monochrome Tree of Life" data-price="600 kr" data-size="21 x 29.7 cm">
@@ -1178,7 +1261,7 @@
             <img src="assets_art/monochrome%20tree%20of%20life.jpg" alt="Monochrome Tree of Life" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Monochrome Tree of Life</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Monochrome Tree of Life">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Monochrome Tree of Life">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Moon" data-price="1000 kr" data-size="21 x 29.7 cm">
@@ -1186,7 +1269,7 @@
             <img src="assets_art/moon.JPG" alt="Moon" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Moon</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Moon">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Moon">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Morning Glory" data-price="600 kr" data-size="21 x 29.7 cm">
@@ -1194,7 +1277,7 @@
             <img src="assets_art/morning%20glory.jpg" alt="Morning Glory" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Morning Glory</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Morning Glory">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Morning Glory">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="One Dahlia" data-price="600 kr" data-size="21 x 29.7 cm">
@@ -1202,7 +1285,7 @@
             <img src="assets_art/one%20dahlia.JPG" alt="One Dahlia" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">One Dahlia</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: One Dahlia">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: One Dahlia">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Paper Cut Flower" data-price="600 kr" data-size="21 x 29.7 cm">
@@ -1210,7 +1293,7 @@
             <img src="assets_art/paper%20cut%20flower.jpg" alt="Paper Cut Flower" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Paper Cut Flower</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Paper Cut Flower">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Paper Cut Flower">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Paper Cut Lotus" data-price="1000 kr" data-size="21 x 29.7 cm">
@@ -1218,7 +1301,7 @@
             <img src="assets_art/paper%20cut%20lotus.JPG" alt="Paper Cut Lotus" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Paper Cut Lotus</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Paper Cut Lotus">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Paper Cut Lotus">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Paper Cut Tree of Life" data-price="1000 kr" data-size="21 x 29.7 cm">
@@ -1226,7 +1309,7 @@
             <img src="assets_art/paper%20cut%20tree%20of%20life.JPG" alt="Paper Cut Tree of Life" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Paper Cut Tree of Life</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Paper Cut Tree of Life">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Paper Cut Tree of Life">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Peacock Madhubani" data-price="600 kr" data-size="21 x 29.7 cm">
@@ -1234,7 +1317,7 @@
             <img src="assets_art/peacock%20madhubani.jpg" alt="Peacock Madhubani" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Peacock Madhubani</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Peacock Madhubani">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Peacock Madhubani">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Peacock Tree of Life" data-price="1000 kr" data-size="21 x 29.7 cm">
@@ -1242,7 +1325,7 @@
             <img src="assets_art/peacock%20tree%20of%20life.JPG" alt="Peacock Tree of Life" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Peacock Tree of Life</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Peacock Tree of Life">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Peacock Tree of Life">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Plant Nursery" data-price="2500 kr" data-size="50 x 90 cm">
@@ -1250,7 +1333,7 @@
             <img src="assets_art/Plant%20nursery.jpg" alt="Plant Nursery" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Plant Nursery</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Plant Nursery">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Plant Nursery">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Red Lotus" data-price="1000 kr" data-size="21 x 29.7 cm">
@@ -1258,7 +1341,7 @@
             <img src="assets_art/red%20lotus.JPG" alt="Red Lotus" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Red Lotus</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Red Lotus">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Red Lotus">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Red Moon" data-price="1000 kr" data-size="21 x 29.7 cm">
@@ -1266,7 +1349,7 @@
             <img src="assets_art/red%20moon.JPG" alt="Red Moon" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Red Moon</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Red Moon">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Red Moon">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Reflection on Water" data-price="600 kr" data-size="21 x 29.7 cm">
@@ -1274,7 +1357,7 @@
             <img src="assets_art/reflection%20on%20water.jpg" alt="Reflection on Water" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Reflection on Water</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Reflection on Water">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Reflection on Water">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Rising Sun" data-price="1000 kr" data-size="21 x 29.7 cm">
@@ -1282,7 +1365,7 @@
             <img src="assets_art/rising%20sun.jpeg" alt="Rising Sun" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Rising Sun</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Rising Sun">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Rising Sun">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Rumi Darwaza Lucknow" data-price="600 kr" data-size="21 x 29.7 cm">
@@ -1290,7 +1373,7 @@
             <img src="assets_art/rumi%20darwaza%20lucknow.JPG" alt="Rumi Darwaza Lucknow" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Rumi Darwaza Lucknow</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Rumi Darwaza Lucknow">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Rumi Darwaza Lucknow">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Sea and Land" data-price="1000 kr" data-size="21 x 29.7 cm">
@@ -1298,7 +1381,7 @@
             <img src="assets_art/sea%20and%20land.jpeg" alt="Sea and Land" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Sea and Land</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Sea and Land">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Sea and Land">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Singing Birds" data-price="1000 kr" data-size="21 x 29.7 cm">
@@ -1306,7 +1389,7 @@
             <img src="assets_art/Singing%20birds.jpg" alt="Singing Birds" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Singing Birds</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Singing Birds">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Singing Birds">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Slide" data-price="600 kr" data-size="21 x 29.7 cm">
@@ -1314,7 +1397,7 @@
             <img src="assets_art/slide.jpg" alt="Slide" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Slide</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Slide">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Slide">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Small Tree of Life" data-price="600 kr" data-size="21 x 29.7 cm">
@@ -1322,7 +1405,7 @@
             <img src="assets_art/small%20tree%20of%20life.JPG" alt="Small Tree of Life" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Small Tree of Life</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Small Tree of Life">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Small Tree of Life">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Sun and Moon" data-price="1000 kr" data-size="21 x 29.7 cm">
@@ -1330,7 +1413,7 @@
             <img src="assets_art/sun%20and%20moon.JPG" alt="Sun and Moon" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Sun and Moon</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Sun and Moon">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Sun and Moon">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Sun Moon Water Colour" data-price="600 kr" data-size="21 x 29.7 cm">
@@ -1338,7 +1421,7 @@
             <img src="assets_art/sun%20moon%20water%20color.jpg" alt="Sun Moon Water Colour" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Sun Moon Water Colour</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Sun Moon Water Colour">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Sun Moon Water Colour">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="The Woman" data-price="600 kr" data-size="21 x 29.7 cm">
@@ -1346,7 +1429,7 @@
             <img src="assets_art/the%20woman.jpg" alt="The Woman" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">The Woman</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: The Woman">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: The Woman">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Tiger and Lion" data-price="600 kr" data-size="21 x 29.7 cm">
@@ -1354,7 +1437,7 @@
             <img src="assets_art/tiger%20and%20lion%20card.JPG" alt="Tiger and Lion" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Tiger and Lion</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Tiger and Lion">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Tiger and Lion">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Tiger" data-price="1000 kr" data-size="21 x 29.7 cm">
@@ -1362,7 +1445,7 @@
             <img src="assets_art/tiger%20card.JPG" alt="Tiger" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Tiger</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Tiger">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Tiger">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Tree of Life Box" data-price="1500 kr" data-size="21 x 21 cm">
@@ -1370,7 +1453,7 @@
             <img src="assets_art/tree%20of%20life%20box.jpg" alt="Tree of Life Box" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Tree of Life Box</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Tree of Life Box">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Tree of Life Box">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Tree of Life with Peacock" data-price="600 kr" data-size="21 x 29.7 cm">
@@ -1378,7 +1461,7 @@
             <img src="assets_art/tree%20of%20life%20with%20peacock.jpg" alt="Tree of Life with Peacock" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Tree of Life with Peacock</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Tree of Life with Peacock">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Tree of Life with Peacock">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Trosa Strand" data-price="2500 kr" data-size="50 x 90 cm">
@@ -1386,7 +1469,7 @@
             <img src="assets_art/trosa%20strand.jpg" alt="Trosa Strand" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Trosa Strand</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Trosa Strand">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Trosa Strand">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Two Ladies" data-price="600 kr" data-size="21 x 29.7 cm">
@@ -1394,7 +1477,7 @@
             <img src="assets_art/two%20ladies.jpg" alt="Two Ladies" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Two Ladies</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Two Ladies">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Two Ladies">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Water Reflections" data-price="600 kr" data-size="21 x 29.7 cm">
@@ -1402,7 +1485,7 @@
             <img src="assets_art/water%20reflections.JPG" alt="Water Reflections" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Water Reflections</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Water Reflections">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Water Reflections">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Wedding" data-price="1000 kr" data-size="21 x 29.7 cm">
@@ -1410,7 +1493,7 @@
             <img src="assets_art/wedding.jpg" alt="Wedding" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Wedding</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Wedding">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Wedding">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Woodpecker" data-price="600 kr" data-size="21 x 29.7 cm">
@@ -1418,7 +1501,7 @@
             <img src="assets_art/woodpeker.jpg" alt="Woodpecker" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Woodpecker</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Woodpecker">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Woodpecker">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Yellow Lotus" data-price="1000 kr" data-size="21 x 29.7 cm">
@@ -1426,7 +1509,7 @@
             <img src="assets_art/Yellow%20lotus.jpg" alt="Yellow Lotus" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Yellow Lotus</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order painting: Yellow Lotus">Order Painting</button>
+          <button class="order-btn" type="button" aria-label="Order painting: Yellow Lotus">Order now</button>
         </div>
 
       </div>
@@ -1436,7 +1519,7 @@
 
     <!-- ── Photographs ── -->
     <section class="gallery-section gallery-panel" id="photographs" aria-labelledby="photos-eyebrow">
-      <p class="section-eyebrow" id="photos-eyebrow">Photographs</p>
+      <p class="section-eyebrow" id="photos-eyebrow">Nice things from me to you</p>
 
       <div class="gallery-grid" role="list">
 
@@ -1445,7 +1528,7 @@
             <img src="assets_photographs/100_0589.JPG" alt="Fishing Boat" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Fishing Boat</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order photograph: Fishing Boat">Order Photograph</button>
+          <button class="order-btn" type="button" aria-label="Order photograph: Fishing Boat">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Banana Stall" data-price="Depending on the size you request, I'll price it accordingly." data-size="Whatever you want, we support all sizes">
@@ -1453,7 +1536,7 @@
             <img src="assets_photographs/100_0597.JPG" alt="Banana Stall" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Banana Stall</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order photograph: Banana Stall">Order Photograph</button>
+          <button class="order-btn" type="button" aria-label="Order photograph: Banana Stall">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Kite String" data-price="Depending on the size you request, I'll price it accordingly." data-size="Whatever you want, we support all sizes">
@@ -1461,7 +1544,7 @@
             <img src="assets_photographs/IMG_5509.JPG" alt="Kite String" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Kite String</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order photograph: Kite String">Order Photograph</button>
+          <button class="order-btn" type="button" aria-label="Order photograph: Kite String">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Carved Door" data-price="Depending on the size you request, I'll price it accordingly." data-size="Whatever you want, we support all sizes">
@@ -1469,7 +1552,7 @@
             <img src="assets_photographs/IMG_5524.JPG" alt="Carved Door" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Carved Door</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order photograph: Carved Door">Order Photograph</button>
+          <button class="order-btn" type="button" aria-label="Order photograph: Carved Door">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Drying Saris" data-price="Depending on the size you request, I'll price it accordingly." data-size="Whatever you want, we support all sizes">
@@ -1477,7 +1560,7 @@
             <img src="assets_photographs/IMG_5535.JPG" alt="Drying Saris" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Drying Saris</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order photograph: Drying Saris">Order Photograph</button>
+          <button class="order-btn" type="button" aria-label="Order photograph: Drying Saris">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Old Luna" data-price="Depending on the size you request, I'll price it accordingly." data-size="Whatever you want, we support all sizes">
@@ -1485,7 +1568,7 @@
             <img src="assets_photographs/IMG_5545.JPG" alt="Old Luna" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Old Luna</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order photograph: Old Luna">Order Photograph</button>
+          <button class="order-btn" type="button" aria-label="Order photograph: Old Luna">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Yellow Scooter" data-price="Depending on the size you request, I'll price it accordingly." data-size="Whatever you want, we support all sizes">
@@ -1493,7 +1576,7 @@
             <img src="assets_photographs/IMG_5548.JPG" alt="Yellow Scooter" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Yellow Scooter</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order photograph: Yellow Scooter">Order Photograph</button>
+          <button class="order-btn" type="button" aria-label="Order photograph: Yellow Scooter">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Stone Carving" data-price="Depending on the size you request, I'll price it accordingly." data-size="Whatever you want, we support all sizes">
@@ -1501,7 +1584,7 @@
             <img src="assets_photographs/IMG_5585.JPG" alt="Stone Carving" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Stone Carving</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order photograph: Stone Carving">Order Photograph</button>
+          <button class="order-btn" type="button" aria-label="Order photograph: Stone Carving">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Carved Niche" data-price="Depending on the size you request, I'll price it accordingly." data-size="Whatever you want, we support all sizes">
@@ -1509,7 +1592,7 @@
             <img src="assets_photographs/IMG_5586.JPG" alt="Carved Niche" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Carved Niche</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order photograph: Carved Niche">Order Photograph</button>
+          <button class="order-btn" type="button" aria-label="Order photograph: Carved Niche">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Scooter Sidecar" data-price="Depending on the size you request, I'll price it accordingly." data-size="Whatever you want, we support all sizes">
@@ -1517,7 +1600,7 @@
             <img src="assets_photographs/IMG_5605.JPG" alt="Scooter Sidecar" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Scooter Sidecar</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order photograph: Scooter Sidecar">Order Photograph</button>
+          <button class="order-btn" type="button" aria-label="Order photograph: Scooter Sidecar">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Village Cot" data-price="Depending on the size you request, I'll price it accordingly." data-size="Whatever you want, we support all sizes">
@@ -1525,7 +1608,7 @@
             <img src="assets_photographs/IMG_5954.JPG" alt="Village Cot" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Village Cot</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order photograph: Village Cot">Order Photograph</button>
+          <button class="order-btn" type="button" aria-label="Order photograph: Village Cot">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Village Family" data-price="Depending on the size you request, I'll price it accordingly." data-size="Whatever you want, we support all sizes">
@@ -1533,7 +1616,7 @@
             <img src="assets_photographs/IMG_5966.JPG" alt="Village Family" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Village Family</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order photograph: Village Family">Order Photograph</button>
+          <button class="order-btn" type="button" aria-label="Order photograph: Village Family">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Painted Doorway" data-price="Depending on the size you request, I'll price it accordingly." data-size="Whatever you want, we support all sizes">
@@ -1541,7 +1624,7 @@
             <img src="assets_photographs/IMG_5968.JPG" alt="Painted Doorway" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Painted Doorway</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order photograph: Painted Doorway">Order Photograph</button>
+          <button class="order-btn" type="button" aria-label="Order photograph: Painted Doorway">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Green Window" data-price="Depending on the size you request, I'll price it accordingly." data-size="Whatever you want, we support all sizes">
@@ -1549,7 +1632,7 @@
             <img src="assets_photographs/IMG_5973.JPG" alt="Green Window" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Green Window</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order photograph: Green Window">Order Photograph</button>
+          <button class="order-btn" type="button" aria-label="Order photograph: Green Window">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Jasmine Garlands" data-price="Depending on the size you request, I'll price it accordingly." data-size="Whatever you want, we support all sizes">
@@ -1557,7 +1640,7 @@
             <img src="assets_photographs/100_1861.JPG" alt="Jasmine Garlands" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Jasmine Garlands</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order photograph: Jasmine Garlands">Order Photograph</button>
+          <button class="order-btn" type="button" aria-label="Order photograph: Jasmine Garlands">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Bare Tree" data-price="Depending on the size you request, I'll price it accordingly." data-size="Whatever you want, we support all sizes">
@@ -1565,7 +1648,7 @@
             <img src="assets_photographs/DSC00014.JPG" alt="Bare Tree" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Bare Tree</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order photograph: Bare Tree">Order Photograph</button>
+          <button class="order-btn" type="button" aria-label="Order photograph: Bare Tree">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Gwalior Fort" data-price="Depending on the size you request, I'll price it accordingly." data-size="Whatever you want, we support all sizes">
@@ -1573,7 +1656,7 @@
             <img src="assets_photographs/DSC00017.JPG" alt="Gwalior Fort" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Gwalior Fort</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order photograph: Gwalior Fort">Order Photograph</button>
+          <button class="order-btn" type="button" aria-label="Order photograph: Gwalior Fort">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Fatehpur Sikri" data-price="Depending on the size you request, I'll price it accordingly." data-size="Whatever you want, we support all sizes">
@@ -1581,7 +1664,7 @@
             <img src="assets_photographs/DSC00046.JPG" alt="Fatehpur Sikri" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Fatehpur Sikri</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order photograph: Fatehpur Sikri">Order Photograph</button>
+          <button class="order-btn" type="button" aria-label="Order photograph: Fatehpur Sikri">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Stone Pavilion" data-price="Depending on the size you request, I'll price it accordingly." data-size="Whatever you want, we support all sizes">
@@ -1589,7 +1672,7 @@
             <img src="assets_photographs/DSC00065.JPG" alt="Stone Pavilion" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Stone Pavilion</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order photograph: Stone Pavilion">Order Photograph</button>
+          <button class="order-btn" type="button" aria-label="Order photograph: Stone Pavilion">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Afternoon Rest" data-price="Depending on the size you request, I'll price it accordingly." data-size="Whatever you want, we support all sizes">
@@ -1597,7 +1680,7 @@
             <img src="assets_photographs/DSC01339.JPG" alt="Afternoon Rest" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Afternoon Rest</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order photograph: Afternoon Rest">Order Photograph</button>
+          <button class="order-btn" type="button" aria-label="Order photograph: Afternoon Rest">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Blue Bench" data-price="Depending on the size you request, I'll price it accordingly." data-size="Whatever you want, we support all sizes">
@@ -1605,7 +1688,7 @@
             <img src="assets_photographs/IMG_7695.JPG" alt="Blue Bench" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Blue Bench</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order photograph: Blue Bench">Order Photograph</button>
+          <button class="order-btn" type="button" aria-label="Order photograph: Blue Bench">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Block Printing" data-price="Depending on the size you request, I'll price it accordingly." data-size="Whatever you want, we support all sizes">
@@ -1613,7 +1696,7 @@
             <img src="assets_photographs/IMG_7696.JPG" alt="Block Printing" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Block Printing</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order photograph: Block Printing">Order Photograph</button>
+          <button class="order-btn" type="button" aria-label="Order photograph: Block Printing">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Torn Posters" data-price="Depending on the size you request, I'll price it accordingly." data-size="Whatever you want, we support all sizes">
@@ -1621,7 +1704,7 @@
             <img src="assets_photographs/IMG_7704.JPG" alt="Torn Posters" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Torn Posters</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order photograph: Torn Posters">Order Photograph</button>
+          <button class="order-btn" type="button" aria-label="Order photograph: Torn Posters">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Blue Courtyard" data-price="Depending on the size you request, I'll price it accordingly." data-size="Whatever you want, we support all sizes">
@@ -1629,7 +1712,7 @@
             <img src="assets_photographs/IMG_7705.JPG" alt="Blue Courtyard" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Blue Courtyard</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order photograph: Blue Courtyard">Order Photograph</button>
+          <button class="order-btn" type="button" aria-label="Order photograph: Blue Courtyard">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Kite Shop" data-price="Depending on the size you request, I'll price it accordingly." data-size="Whatever you want, we support all sizes">
@@ -1637,7 +1720,7 @@
             <img src="assets_photographs/IMG_7736.JPG" alt="Kite Shop" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Kite Shop</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order photograph: Kite Shop">Order Photograph</button>
+          <button class="order-btn" type="button" aria-label="Order photograph: Kite Shop">Order now</button>
         </div>
 
         <div class="gallery-card" role="listitem" data-title="Toy Parrots" data-price="Depending on the size you request, I'll price it accordingly." data-size="Whatever you want, we support all sizes">
@@ -1645,7 +1728,7 @@
             <img src="assets_photographs/IMG_7738.JPG" alt="Toy Parrots" loading="lazy">
             <span class="gallery-card-caption" aria-hidden="true">Toy Parrots</span>
           </a>
-          <button class="order-btn" type="button" aria-label="Order photograph: Toy Parrots">Order Photograph</button>
+          <button class="order-btn" type="button" aria-label="Order photograph: Toy Parrots">Order now</button>
         </div>
 
       </div>
@@ -1666,7 +1749,7 @@
     <div class="footer-inner">
       <div class="footer-copy">
         <p>&copy; Copyright &mdash; Namrata Agarwal 2026</p>
-        <p>Made in Sweden with love, vibe-coding and the awesome <a href="https://rsms.me/inter/" target="_blank" rel="noopener noreferrer">Inter</a> typeface created by <a href="https://rsms.me/" target="_blank" rel="noopener noreferrer">Rasmus Andersson</a>.</p>
+        <p>Made in Sweden with love and the awesome <a href="https://rsms.me/inter/" target="_blank" rel="noopener noreferrer">Inter</a> typeface created by <a href="https://rsms.me/" target="_blank" rel="noopener noreferrer">Rasmus Andersson</a>.</p>
       </div>
     </div>
   </footer>
@@ -1739,6 +1822,59 @@
   </div>
 
   <script>
+    // ── Theme toggle ──
+    const themeToggle = document.getElementById('themeToggle');
+
+    function syncThemeToggle() {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      themeToggle.setAttribute('aria-checked', String(isDark));
+    }
+    syncThemeToggle();
+
+    themeToggle.addEventListener('click', () => {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      const next = isDark ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      syncThemeToggle();
+    });
+
+    // ── Card meta (always-visible name + price) ──
+    document.querySelectorAll('.gallery-card').forEach(card => {
+      const anchor = card.querySelector('a');
+      const btn    = card.querySelector('.order-btn');
+      if (!anchor) return;
+
+      // wrap the image (and order button) so the button anchors to the image
+      const media = document.createElement('div');
+      media.className = 'gallery-card-media';
+      card.insertBefore(media, anchor);
+      media.appendChild(anchor);
+      if (btn) media.appendChild(btn);
+
+      // build the name + price row below the image
+      const rawPrice = card.dataset.price || '';
+      const isPhoto  = !!card.closest('#photographs');
+      const priceText = isPhoto ? 'Price on request' : rawPrice;
+
+      const meta = document.createElement('div');
+      meta.className = 'gallery-card-meta';
+
+      const name = document.createElement('span');
+      name.className = 'gallery-card-name';
+      name.textContent = card.dataset.title || '';
+      meta.appendChild(name);
+
+      if (priceText) {
+        const price = document.createElement('span');
+        price.className = 'gallery-card-price';
+        price.textContent = priceText;
+        meta.appendChild(price);
+      }
+
+      card.appendChild(meta);
+    });
+
     // ── Mobile nav ──
     const menuBtn   = document.getElementById('menuBtn');
     const mobileNav = document.getElementById('mobileNav');
