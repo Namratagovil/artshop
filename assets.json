@@ -696,6 +696,90 @@
       "price": "Depending on the size you request, I'll price it accordingly.",
       "size": "Whatever you want, we support all sizes",
       "category": "nature"
+    },
+    {
+      "file": "assets_digital_art/Brushed Stripes.png",
+      "title": "Brushed Stripes",
+      "price": "Depending on the size you request, I'll price it accordingly.",
+      "size": "Whatever you want, we support all sizes",
+      "category": "abstract"
+    },
+    {
+      "file": "assets_digital_art/Peony Damask.png",
+      "title": "Peony Damask",
+      "price": "Depending on the size you request, I'll price it accordingly.",
+      "size": "Whatever you want, we support all sizes",
+      "category": "floral"
+    },
+    {
+      "file": "assets_digital_art/Tropical Leaves.png",
+      "title": "Tropical Leaves",
+      "price": "Depending on the size you request, I'll price it accordingly.",
+      "size": "Whatever you want, we support all sizes",
+      "category": "nature"
+    },
+    {
+      "file": "assets_digital_art/Ink Branches.png",
+      "title": "Ink Branches",
+      "price": "Depending on the size you request, I'll price it accordingly.",
+      "size": "Whatever you want, we support all sizes",
+      "category": "nature"
+    },
+    {
+      "file": "assets_digital_art/Isometric Blocks.png",
+      "title": "Isometric Blocks",
+      "price": "Depending on the size you request, I'll price it accordingly.",
+      "size": "Whatever you want, we support all sizes",
+      "category": "geometric"
+    },
+    {
+      "file": "assets_digital_art/Folded Paper.png",
+      "title": "Folded Paper",
+      "price": "Depending on the size you request, I'll price it accordingly.",
+      "size": "Whatever you want, we support all sizes",
+      "category": "abstract"
+    },
+    {
+      "file": "assets_digital_art/Wireframe Sphere.png",
+      "title": "Wireframe Sphere",
+      "price": "Depending on the size you request, I'll price it accordingly.",
+      "size": "Whatever you want, we support all sizes",
+      "category": "geometric"
+    },
+    {
+      "file": "assets_digital_art/Brushstroke Plaid.png",
+      "title": "Brushstroke Plaid",
+      "price": "Depending on the size you request, I'll price it accordingly.",
+      "size": "Whatever you want, we support all sizes",
+      "category": "abstract"
+    },
+    {
+      "file": "assets_digital_art/Ink Horizon.png",
+      "title": "Ink Horizon",
+      "price": "Depending on the size you request, I'll price it accordingly.",
+      "size": "Whatever you want, we support all sizes",
+      "category": "abstract"
+    },
+    {
+      "file": "assets_digital_art/Desert Cactus.png",
+      "title": "Desert Cactus",
+      "price": "Depending on the size you request, I'll price it accordingly.",
+      "size": "Whatever you want, we support all sizes",
+      "category": "nature"
+    },
+    {
+      "file": "assets_digital_art/Woven Circles.png",
+      "title": "Woven Circles",
+      "price": "Depending on the size you request, I'll price it accordingly.",
+      "size": "Whatever you want, we support all sizes",
+      "category": "geometric"
+    },
+    {
+      "file": "assets_digital_art/Faceted Triangles.png",
+      "title": "Faceted Triangles",
+      "price": "Depending on the size you request, I'll price it accordingly.",
+      "size": "Whatever you want, we support all sizes",
+      "category": "geometric"
     }
   ]
 }
