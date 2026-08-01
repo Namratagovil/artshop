@@ -805,7 +805,7 @@
   <!-- ── Header / Nav ── -->
   <header class="site-header">
     <nav class="nav-inner" aria-label="Primary">
-      <a class="nav-logo" href="#" aria-label="Namrata Agarwal — home">Namrata Agarwal</a>
+      <a class="nav-logo" href="#" aria-label="Namrata Asha — home">Namrata Asha</a>
 
       <div class="nav-right">
         <ul class="nav-links" role="list">
@@ -1962,12 +1962,24 @@
     // ── Gallery pagination ──
     const PAGE_SIZE = 16;
 
+    // shuffle so a fresh visit surfaces different pieces on page 1
+    function shuffleInPlace(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
     document.querySelectorAll('.gallery-panel').forEach(panel => {
       const grid = panel.querySelector('.gallery-grid');
       const nav  = panel.querySelector('.gallery-pagination');
-      if (!grid || !nav) return;
+      if (!grid) return;
 
-      const cards = Array.from(grid.querySelectorAll('.gallery-card'));
+      const cards = shuffleInPlace(Array.from(grid.querySelectorAll('.gallery-card')));
+      cards.forEach(card => grid.appendChild(card));
+
+      if (!nav) return;
       const pageCount = Math.ceil(cards.length / PAGE_SIZE);
       if (pageCount <= 1) return;
 
