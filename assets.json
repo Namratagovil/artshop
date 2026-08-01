@@ -85,6 +85,13 @@
       "category": "portrait"
     },
     {
+      "file": "assets_art/dragonfly.jpg",
+      "title": "Dragonfly",
+      "price": 600,
+      "size": "21 x 29.7 cm",
+      "category": "nature"
+    },
+    {
       "file": "assets_art/elephant and water.jpg",
       "title": "Elephant and Water",
       "price": 600,
@@ -673,6 +680,22 @@
       "price": "Depening on size you request, we price it accorindinly",
       "size": "Whatever you want, we support all sizes",
       "category": "street"
+    }
+  ],
+  "digital_art": [
+    {
+      "file": "assets_digital_art/Abstract Giraffe.png",
+      "title": "Abstract Giraffe",
+      "price": "Depending on the size you request, I'll price it accordingly.",
+      "size": "Whatever you want, we support all sizes",
+      "category": "abstract"
+    },
+    {
+      "file": "assets_digital_art/Giraffe.png",
+      "title": "Giraffe",
+      "price": "Depending on the size you request, I'll price it accordingly.",
+      "size": "Whatever you want, we support all sizes",
+      "category": "nature"
     }
   ]
 }

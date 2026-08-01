@@ -810,6 +810,7 @@
       <div class="nav-right">
         <ul class="nav-links" role="list">
           <li><a href="#art" class="nav-tab" data-panel="art">Art</a></li>
+          <li><a href="#digital-art" class="nav-tab" data-panel="digital-art">Digital Art</a></li>
           <li><a href="#photographs" class="nav-tab" data-panel="photographs">Photographs</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -822,6 +823,7 @@
 
     <nav id="mobileNav" class="nav-mobile" aria-label="Mobile">
       <a href="#art" class="nav-tab" data-panel="art">Art</a>
+      <a href="#digital-art" class="nav-tab" data-panel="digital-art">Digital Art</a>
       <a href="#photographs" class="nav-tab" data-panel="photographs">Photographs</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -1393,9 +1395,44 @@
           <button class="order-btn" type="button" aria-label="Order painting: Yellow Lotus">Order now</button>
         </div>
 
+        <div class="gallery-card" role="listitem" data-title="Dragonfly" data-price="600 kr" data-size="21 x 29.7 cm">
+          <a href="#" aria-label="View: Dragonfly" data-src="assets_art/dragonfly.jpg" data-caption="Dragonfly">
+            <img src="assets_art/dragonfly.jpg" alt="Dragonfly" loading="lazy">
+            <span class="gallery-card-caption" aria-hidden="true">Dragonfly</span>
+          </a>
+          <button class="order-btn" type="button" aria-label="Order painting: Dragonfly">Order now</button>
+        </div>
+
       </div>
 
       <nav class="gallery-pagination" aria-label="Art pagination"></nav>
+    </section>
+
+    <!-- ── Digital Art ── -->
+    <section class="gallery-section gallery-panel" id="digital-art" aria-labelledby="digital-art-eyebrow">
+      <p class="section-eyebrow" id="digital-art-eyebrow">Nice things from me to you</p>
+
+      <div class="gallery-grid" role="list">
+
+        <div class="gallery-card" role="listitem" data-title="Abstract Giraffe" data-price="Depending on the size you request, I'll price it accordingly." data-size="Whatever you want, we support all sizes">
+          <a href="#" aria-label="View: Abstract Giraffe" data-src="assets_digital_art/Abstract%20Giraffe.png" data-caption="Abstract Giraffe">
+            <img src="assets_digital_art/Abstract%20Giraffe.png" alt="Abstract Giraffe" loading="lazy">
+            <span class="gallery-card-caption" aria-hidden="true">Abstract Giraffe</span>
+          </a>
+          <button class="order-btn" type="button" aria-label="Order digital art: Abstract Giraffe">Order now</button>
+        </div>
+
+        <div class="gallery-card" role="listitem" data-title="Giraffe" data-price="Depending on the size you request, I'll price it accordingly." data-size="Whatever you want, we support all sizes">
+          <a href="#" aria-label="View: Giraffe" data-src="assets_digital_art/Giraffe.png" data-caption="Giraffe">
+            <img src="assets_digital_art/Giraffe.png" alt="Giraffe" loading="lazy">
+            <span class="gallery-card-caption" aria-hidden="true">Giraffe</span>
+          </a>
+          <button class="order-btn" type="button" aria-label="Order digital art: Giraffe">Order now</button>
+        </div>
+
+      </div>
+
+      <nav class="gallery-pagination" aria-label="Digital art pagination"></nav>
     </section>
 
     <!-- ── Photographs ── -->
@@ -1757,7 +1794,7 @@
 
       // build the name + price row below the image
       const rawPrice = card.dataset.price || '';
-      const isPhoto  = !!card.closest('#photographs');
+      const isPhoto  = !!card.closest('#photographs, #digital-art');
       const priceText = isPhoto ? 'Price on request' : rawPrice;
 
       const meta = document.createElement('div');
@@ -1822,7 +1859,7 @@
     });
 
     // initialise: honour URL hash, default to art
-    const initialPanel = ['art', 'photographs'].includes(location.hash.slice(1))
+    const initialPanel = ['art', 'digital-art', 'photographs'].includes(location.hash.slice(1))
       ? location.hash.slice(1) : 'art';
     showPanel(initialPanel);
 
@@ -1988,7 +2025,7 @@
         if (prevFocus) prevFocus.focus();
       }
 
-      document.querySelectorAll('#art .order-btn, #photographs .order-btn').forEach(btn => {
+      document.querySelectorAll('#art .order-btn, #digital-art .order-btn, #photographs .order-btn').forEach(btn => {
         btn.addEventListener('click', e => {
           e.stopPropagation();
           const card = btn.closest('.gallery-card');
